@@ -8,7 +8,7 @@ interface Props {}
 export default (props: Props) => {
 	const setView = useSetRecoilState(Atom.viewCurrentView)
 	const [teams, setTeams] = useRecoilState(Atom.viewTeams)
-	const setCurrentTeam = useSetRecoilState(Atom.viewCurrentTeam)
+	const setCurrentTeam = useSetRecoilState(Atom.viewCurrentTeamID)
 
 	return (
 		<>
@@ -17,7 +17,7 @@ export default (props: Props) => {
 				onClick={() => {
 					setTeams(teams => [
 						{
-							name: prompt('enter a name') as string,
+							name: '' + Math.random(),
 							pokemon: [],
 							id: teams.length
 						},
@@ -31,15 +31,15 @@ export default (props: Props) => {
 				return (
 					<div
 						onClick={() => {
-							setCurrentTeam(team)
+							setCurrentTeam(team.id)
 							setView(View.Team)
 						}}
 						key={Math.random()}
 					>
-						<p>{team.name}</p>
+						<h2>{team.name}</h2>
 						<ul>
 							{team.pokemon.map(pokemon => (
-								<li>{pokemon.name}</li>
+								<li key={Math.random()}>{pokemon.name}</li>
 							))}
 						</ul>
 					</div>

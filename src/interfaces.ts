@@ -177,6 +177,7 @@ export declare module Teambuilder {
 		sprite: string
 		types: string[]
 		abilities: string[]
+		index: number | null
 		stats: {
 			name: string
 			base: number

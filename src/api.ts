@@ -12,6 +12,7 @@ export const convertPokeAPIPokemonToTeambuilder = (data: PokeAPI.Pokemon): Teamb
 		sprite: data.sprites.front_default,
 		types: data.types.map(type => type.type.name),
 		abilities: data.abilities.map(ability => ability.ability.name),
+		index: null,
 		stats: data.stats.map(stat => ({
 			name: stat.stat.name,
 			base: stat.base_stat

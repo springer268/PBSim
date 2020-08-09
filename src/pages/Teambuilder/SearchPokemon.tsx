@@ -2,36 +2,44 @@ import React from 'react'
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil'
 import { View } from './Teambuilder'
 import * as Atom from '../../atoms'
+import { Teambuilder } from '../../interfaces'
 
 interface Props {}
 
 export default (props: Props) => {
 	const setView = useSetRecoilState(Atom.viewCurrentView)
-	const setTeams = useSetRecoilState(Atom.viewTeams)
-	const [currentTeam, setCurrentTeam] = useRecoilState(Atom.viewCurrentTeam)
+	const [teams, setTeams] = useRecoilState(Atom.viewTeams)
+	const [currentTeamID, setCurrentTeamID] = useRecoilState(Atom.viewCurrentTeamID)
 	const searchPokemon = useRecoilValue(Atom.viewSearchPokemon)
-	const setCurrentPokemon = useSetRecoilState(Atom.viewCurrentPokemon)
+	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoilState(Atom.viewCurrentPokemonIndex)
+
+	const currentTeam = teams.filter(team => team.id === currentTeamID)[0]
+
+	const setCurrentTeam = (newTeam: Teambuilder.Team) => {
+		setTeams(teams =>
+			teams.map(team => {
+				if (team.id === newTeam.id) {
+					return newTeam
+				} else {
+					return team
+				}
+			})
+		)
+	}
 
 	return (
 		<>
 			<button onClick={() => setView(View.Team)}>Back</button>
-			{searchPokemon?.map(pokemon => {
+			{searchPokemon.map(pokemon => {
 				return (
 					<div
 						key={pokemon.id}
 						onClick={() => {
-							setCurrentTeam(currentTeam => ({
+							setCurrentTeam({
 								...currentTeam,
-								pokemon: [...currentTeam.pokemon, pokemon]
-							}))
-							setTeams(teams => [
-								{
-									...currentTeam,
-									pokemon: [...currentTeam.pokemon, pokemon]
-								},
-								...teams.filter(team => team.id !== currentTeam.id)
-							])
-							setCurrentPokemon(pokemon)
+								pokemon: [...currentTeam.pokemon, { ...pokemon, index: currentTeam.pokemon.length }]
+							})
+							setCurrentPokemonIndex(currentTeam.pokemon.length)
 							setView(View.EditPokemon)
 						}}
 					>

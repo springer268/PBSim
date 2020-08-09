@@ -11,9 +11,9 @@ export const viewCurrentView = atom({
 	default: 0
 })
 
-export const viewCurrentTeam = atom({
+export const viewCurrentTeamID = atom({
 	key: 'viewCurrentTeam',
-	default: {} as Teambuilder.Team
+	default: 0
 })
 
 export const viewSearchPokemon = atom({
@@ -21,7 +21,7 @@ export const viewSearchPokemon = atom({
 	default: [] as Teambuilder.Pokemon[]
 })
 
-export const viewCurrentPokemon = atom({
+export const viewCurrentPokemonIndex = atom({
 	key: 'viewCurrentPokemon',
-	default: {} as Teambuilder.Pokemon
+	default: 0
 })

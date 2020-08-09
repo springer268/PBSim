@@ -1,20 +1,27 @@
 import React from 'react'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import { View } from './Teambuilder'
 import * as Atom from '../../atoms'
 
 interface Props {}
 
 export default (props: Props) => {
+	const teams = useRecoilValue(Atom.viewTeams)
 	const setView = useSetRecoilState(Atom.viewCurrentView)
-	const currentTeam = useRecoilValue(Atom.viewCurrentTeam)
-	const setCurrentPokemon = useSetRecoilState(Atom.viewCurrentPokemon)
+	const currentTeamID = useRecoilValue(Atom.viewCurrentTeamID)
+	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoilState(
+		Atom.viewCurrentPokemonIndex
+	)
+
+	const currentTeam = teams.filter(team => team.id === currentTeamID)[0]
+	const currentPokemon = currentTeam.pokemon.filter(
+		pokemon => pokemon.index === currentPokemonIndex
+	)[0]
 
 	return (
 		<>
 			<button
 				onClick={() => {
-					console.log(currentTeam)
 					setView(View.Teams)
 				}}
 			>
@@ -27,7 +34,7 @@ export default (props: Props) => {
 					<div
 						key={Math.random()}
 						onClick={() => {
-							setCurrentPokemon(pokemon)
+							setCurrentPokemonIndex(pokemon.index as number)
 							setView(View.EditPokemon)
 						}}
 					>
