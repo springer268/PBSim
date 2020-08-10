@@ -29,7 +29,7 @@ export default (props: Props) => {
 		;(async () => {
 			const promises: Promise<Teambuilder.Pokemon>[] = []
 
-			for (let id = 1; id <= 151; id++) {
+			for (let id = 400; id <= 500; id++) {
 				promises.push(getTeambuilderPokemon(id))
 			}
 

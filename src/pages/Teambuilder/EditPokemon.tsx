@@ -3,6 +3,9 @@ import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil'
 import { View } from './Teambuilder'
 import * as Atom from '../../atoms'
 import { Teambuilder } from '../../interfaces'
+import CurrentTeamNav from './CurrentTeamNav'
+import PokemonStage from './PokemonStage'
+import Navbar from './NavbarPrimary'
 
 interface Props {}
 
@@ -16,8 +19,8 @@ export default (props: Props) => {
 	const currentPokemon = currentTeam.pokemon.filter(pokemon => pokemon.index === currentPokemonIndex)[0]
 
 	const setCurrentPokemon = (pok: Teambuilder.Pokemon) => {
-		setTeams(teams =>
-			teams.map(team => {
+		setTeams(teams => {
+			const val = teams.map(team => {
 				if (team.id === currentTeamID) {
 					return {
 						...team,
@@ -33,15 +36,20 @@ export default (props: Props) => {
 					return team
 				}
 			})
-		)
+
+			localStorage.setItem('teams', JSON.stringify(val))
+
+			return val
+		})
 	}
 
 	return (
 		<>
-			<button onClick={() => setView(View.Team)}>Back</button>
-			<h1>{currentPokemon.name}</h1>
-			<button onClick={() => setCurrentPokemon({ ...currentPokemon, name: 'yenis lmao' })}>Epic haha</button>
-			<button onClick={() => console.log(currentTeam)}>log</button>
+			<Navbar />
+			<CurrentTeamNav>
+				<button onClick={() => setView(View.Team)}>Back</button>
+			</CurrentTeamNav>
+			<PokemonStage pokemon={currentPokemon} />
 		</>
 	)
 }

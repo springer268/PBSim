@@ -3,7 +3,7 @@ import { Teambuilder } from './interfaces'
 
 export const viewTeams = atom({
 	key: 'viewTeams',
-	default: [] as Teambuilder.Team[]
+	default: JSON.parse(localStorage.getItem('teams') ?? '[]') as Teambuilder.Team[]
 })
 
 export const viewCurrentView = atom({
