@@ -5,18 +5,7 @@ import * as Atom from '../../atoms'
 import Navbar from './NavbarPrimary'
 import { Wrapper } from '../../ui'
 import PokemonStage from './PokemonStage'
-import styled from 'styled-components'
-
-const Button = styled.button`
-	background: linear-gradient(-135deg, #02e6ee, #1f3cce);
-	border: none;
-	padding: 5px 10px;
-	color: white;
-	font-weight: 500;
-	outline: none;
-	cursor: pointer;
-	margin: 10px 0;
-`
+import { Button } from '../../ui'
 
 interface Props {}
 
@@ -33,6 +22,7 @@ export default (props: Props) => {
 			<Navbar />
 			<Wrapper>
 				<Button
+					style={{ margin: '10px 0' }}
 					onClick={() => {
 						setView(View.Teams)
 					}}
@@ -40,13 +30,15 @@ export default (props: Props) => {
 					Back
 				</Button>
 				<h1 style={{ fontSize: '38px' }}>{currentTeam.name}</h1>
-				<Button onClick={() => setView(View.SearchPokemon)}>Add new Pokemon</Button>
+				<Button style={{ margin: '10px 0' }} onClick={() => setView(View.SearchPokemon)}>
+					Add new Pokemon
+				</Button>
 				{currentTeam.pokemon.map(pokemon => {
 					return (
 						<div
 							style={{ cursor: 'pointer' }}
 							onClick={() => {
-								setCurrentPokemonIndex(pokemon.index as number)
+								setCurrentPokemonIndex(pokemon.index)
 								setView(View.EditPokemon)
 							}}
 						>

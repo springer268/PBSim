@@ -6,6 +6,7 @@ import { Teambuilder } from '../../interfaces'
 import CurrentTeamNav from './CurrentTeamNav'
 import PokemonStage from './PokemonStage'
 import Navbar from './NavbarPrimary'
+import { Button } from '../../ui'
 
 interface Props {}
 
@@ -18,7 +19,7 @@ export default (props: Props) => {
 	const currentTeam = teams.filter(team => team.id === currentTeamID)[0]
 	const currentPokemon = currentTeam.pokemon.filter(pokemon => pokemon.index === currentPokemonIndex)[0]
 
-	const setCurrentPokemon = (pok: Teambuilder.Pokemon) => {
+	const setCurrentPokemon = (pok: Teambuilder.Pokemon.Concrete) => {
 		setTeams(teams => {
 			const val = teams.map(team => {
 				if (team.id === currentTeamID) {
@@ -47,7 +48,7 @@ export default (props: Props) => {
 		<>
 			<Navbar />
 			<CurrentTeamNav>
-				<button onClick={() => setView(View.Team)}>Back</button>
+				<Button onClick={() => setView(View.Team)}>Back</Button>
 			</CurrentTeamNav>
 			<PokemonStage pokemon={currentPokemon} />
 		</>

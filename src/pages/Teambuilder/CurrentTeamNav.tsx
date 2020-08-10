@@ -2,7 +2,6 @@ import React from 'react'
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil'
 import { View } from './Teambuilder'
 import * as Atom from '../../atoms'
-import { Teambuilder } from '../../interfaces'
 import styled from 'styled-components'
 
 const Navbar = styled.nav`
@@ -11,14 +10,6 @@ const Navbar = styled.nav`
 
 	button {
 		margin: auto 15px;
-		//background: linear-gradient(-135deg, #c850c0, #4158d0);
-		background: linear-gradient(-135deg, #02e6ee, #1f3cce);
-		border: none;
-		padding: 5px 10px;
-		color: white;
-		font-weight: 500;
-		outline: none;
-		cursor: pointer;
 	}
 
 	ul {
@@ -77,7 +68,7 @@ export default (props: Props) => {
 						<li
 							key={pokemon.index}
 							onClick={() => {
-								setCurrentPokemonIndex(pokemon.index as number)
+								setCurrentPokemonIndex(pokemon.index)
 								setView(View.EditPokemon)
 							}}
 						>

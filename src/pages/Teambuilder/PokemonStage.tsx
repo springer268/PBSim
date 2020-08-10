@@ -1,6 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Teambuilder } from '../../interfaces'
+import { View } from './Teambuilder'
+import { useRecoilState } from 'recoil'
+import * as Atom from '../../atoms'
 
 const PokemonStage = styled.div`
 	display: flex;
@@ -38,11 +41,12 @@ const PokemonStage = styled.div`
 `
 
 interface Props {
-	pokemon: Teambuilder.Pokemon
+	pokemon: Teambuilder.Pokemon.Concrete
 }
 
 export default (props: Props) => {
 	const { pokemon } = props
+	const [view, setView] = useRecoilState(Atom.viewCurrentView)
 
 	return (
 		<PokemonStage>
@@ -64,7 +68,14 @@ export default (props: Props) => {
 			<div className='moves'>
 				<div className='form-control'>
 					<label htmlFor=''>Moves</label>
-					<input type='text' />
+					<input
+						type='text'
+						onClick={() => {
+							if (view !== View.SelectMove) {
+								setView(View.SelectMove)
+							}
+						}}
+					/>
 					<input type='text' />
 					<input type='text' />
 					<input type='text' />

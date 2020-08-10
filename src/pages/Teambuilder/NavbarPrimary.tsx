@@ -9,8 +9,6 @@ const Navbar = styled.nav`
 	height: 50px;
 	background: linear-gradient(-135deg, #02e6ee, #1f3cce);
 	justify-content: space-between;
-	position: sticky;
-	top: 0;
 
 	h1 {
 		margin: auto 15px;
@@ -34,7 +32,7 @@ export default (props: Props) => {
 			<button
 				onClick={() => {
 					setTeams([])
-					localStorage.removeItem('teams')
+					localStorage.clear()
 				}}
 			>
 				Clear

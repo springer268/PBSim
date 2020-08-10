@@ -7,7 +7,8 @@ import CurrentTeamNav from './CurrentTeamNav'
 import Navbar from './NavbarPrimary'
 import styled from 'styled-components'
 import { abstractToDefaultConcrete } from '../../util'
-import { PokemonItem, Searchbar } from '../../ui'
+import PokemonStage from './PokemonStage'
+import { Button, MoveItem, Searchbar } from '../../ui'
 
 interface Props {}
 
@@ -17,34 +18,27 @@ export default (props: Props) => {
 	const [currentTeamID, setCurrentTeamID] = useRecoilState(Atom.viewCurrentTeamID)
 	const searchPokemon = useRecoilValue(Atom.viewSearchPokemon)
 	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoilState(Atom.viewCurrentPokemonIndex)
+	const allMoves = useRecoilValue(Atom.viewAllMoves)
 	const [input, setInput] = useState<string>('')
 
 	const currentTeam = teams.filter(team => team.id === currentTeamID)[0]
+	const currentPokemon = currentTeam.pokemon.filter(pokemon => pokemon.index === currentPokemonIndex)[0]
 
-	const setCurrentTeam = (newTeam: Teambuilder.Team) => {
-		setTeams(teams => {
-			const val = teams.map(team => {
-				if (team.id === newTeam.id) {
-					return newTeam
-				} else {
-					return team
-				}
-			})
+	let moveset = [] as string[]
 
-			localStorage.setItem('teams', JSON.stringify(val))
-
-			return val
-		})
+	if (searchPokemon.length > 0) {
+		moveset = searchPokemon.filter(pokemon => pokemon.id === currentPokemon.id)[0].moveset
 	}
 
 	return (
 		<>
-			<div style={{ position: 'sticky', top: '0', zIndex: 10 }}>
+			<div style={{ position: 'sticky', top: '0' }}>
 				<Navbar />
 				<CurrentTeamNav>
-					<button onClick={() => setView(View.Team)}>Back</button>
+					<Button onClick={() => setView(View.Team)}>Back</Button>
 				</CurrentTeamNav>
 			</div>
+			<PokemonStage pokemon={currentPokemon} />
 			<Searchbar
 				type='text'
 				placeholder='Search for a Pokemon'
@@ -52,27 +46,15 @@ export default (props: Props) => {
 					setInput(e.target.value)
 				}}
 			/>
-			<div style={{ zIndex: 11 }}>
-				{searchPokemon.map(pokemon => {
-					if (pokemon.name.includes(input.toLowerCase())) {
+			<div>
+				{moveset.map(move => {
+					const actual = allMoves.get(move)
+
+					if (actual?.prettyName.toLowerCase().includes(input.toLowerCase())) {
 						return (
-							<PokemonItem
-								key={pokemon.id}
-								onClick={() => {
-									setCurrentTeam({
-										...currentTeam,
-										pokemon: [
-											...currentTeam.pokemon,
-											abstractToDefaultConcrete(pokemon, currentTeam.pokemon.length)
-										]
-									})
-									setCurrentPokemonIndex(currentTeam.pokemon.length)
-									setView(View.EditPokemon)
-								}}
-							>
-								<img src={pokemon.sprite} alt={pokemon.name} />
-								<p>{pokemon.name}</p>
-							</PokemonItem>
+							<MoveItem key={actual?.uglyName}>
+								<p>{actual?.prettyName}</p>
+							</MoveItem>
 						)
 					} else {
 						return <></>
