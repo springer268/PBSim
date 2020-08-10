@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import styled from 'styled-components'
-import { Teambuilder } from '../../interfaces'
-import { View } from './Teambuilder'
+import { Teambuilder } from '../interfaces'
+import { View } from '../pages/Teambuilder/Teambuilder'
 import { useRecoilState } from 'recoil'
-import * as Atom from '../../atoms'
+import Atom from '../atoms'
 
 const PokemonStage = styled.div`
 	display: flex;
@@ -46,7 +47,12 @@ interface Props {
 
 export default (props: Props) => {
 	const { pokemon } = props
-	const [view, setView] = useRecoilState(Atom.viewCurrentView)
+	const [currentView, setCurrentView] = useRecoilState(Atom.Teambuilder.currentView)
+	const [teams, setTeams] = useRecoilState(Atom.Teambuilder.teams)
+	const [currentTeamID, setCurrentTeamID] = useRecoilState(Atom.Teambuilder.currentTeamID)
+	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoilState(Atom.Teambuilder.currentPokemonIndex)
+	const [allPokemon, setAllPokemon] = useRecoilState(Atom.Teambuilder.allPokemon)
+	const [allMoves, setAllMoves] = useRecoilState(Atom.Teambuilder.allMoves)
 
 	return (
 		<PokemonStage>
@@ -71,8 +77,8 @@ export default (props: Props) => {
 					<input
 						type='text'
 						onClick={() => {
-							if (view !== View.SelectMove) {
-								setView(View.SelectMove)
+							if (currentView !== View.SelectMove) {
+								setCurrentView(View.SelectMove)
 							}
 						}}
 					/>

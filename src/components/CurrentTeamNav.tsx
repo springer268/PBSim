@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
-import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil'
-import { View } from './Teambuilder'
-import * as Atom from '../../atoms'
+import { useRecoilState } from 'recoil'
+import { View } from '../pages/Teambuilder/Teambuilder'
+import Atom from '../atoms'
 import styled from 'styled-components'
 
 const Navbar = styled.nav`
@@ -51,11 +52,12 @@ interface Props {
 }
 
 export default (props: Props) => {
-	const setView = useSetRecoilState(Atom.viewCurrentView)
-	const [teams, setTeams] = useRecoilState(Atom.viewTeams)
-	const [currentTeamID, setCurrentTeamID] = useRecoilState(Atom.viewCurrentTeamID)
-	const searchPokemon = useRecoilValue(Atom.viewSearchPokemon)
-	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoilState(Atom.viewCurrentPokemonIndex)
+	const [currentView, setCurrentView] = useRecoilState(Atom.Teambuilder.currentView)
+	const [teams, setTeams] = useRecoilState(Atom.Teambuilder.teams)
+	const [currentTeamID, setCurrentTeamID] = useRecoilState(Atom.Teambuilder.currentTeamID)
+	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoilState(Atom.Teambuilder.currentPokemonIndex)
+	const [allPokemon, setAllPokemon] = useRecoilState(Atom.Teambuilder.allPokemon)
+	const [allMoves, setAllMoves] = useRecoilState(Atom.Teambuilder.allMoves)
 
 	const currentTeam = teams.filter(team => team.id === currentTeamID)[0]
 
@@ -69,7 +71,7 @@ export default (props: Props) => {
 							key={pokemon.index}
 							onClick={() => {
 								setCurrentPokemonIndex(pokemon.index)
-								setView(View.EditPokemon)
+								setCurrentView(View.EditPokemon)
 							}}
 						>
 							<img src={pokemon.sprite} alt={pokemon.name} />
@@ -77,7 +79,7 @@ export default (props: Props) => {
 						</li>
 					)
 				})}
-				<li onClick={() => setView(View.SearchPokemon)}>
+				<li onClick={() => setCurrentView(View.SearchPokemon)}>
 					<i className='fa fa-plus'></i>
 				</li>
 			</ul>

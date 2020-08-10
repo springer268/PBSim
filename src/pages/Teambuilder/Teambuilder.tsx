@@ -1,15 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import { Teambuilder } from '../../interfaces'
 import { getTeambuilderPokemon, getTeambuilderMove } from '../../api'
-import { useSetRecoilState, useRecoilValue, useRecoilState } from 'recoil'
-import * as Atom from '../../atoms'
-import Teams from './Teams'
-import Team from './Team'
-import SearchPokemon from './SearchPokemon'
-import EditPokemon from './EditPokemon'
-import SelectMove from './SelectMove'
+import { useRecoilState } from 'recoil'
+import Atom from '../../atoms'
+import Teams from './views/Teams'
+import Team from './views/Team'
+import SearchPokemon from './views/SearchPokemon'
+import EditPokemon from './views/EditPokemon'
+import SelectMove from './views/SelectMove'
 
 export enum View {
 	Teams,
@@ -24,26 +25,31 @@ interface RouteParams {}
 interface Props extends RouteComponentProps<RouteParams> {}
 
 export default (props: Props) => {
-	const view = useRecoilValue(Atom.viewCurrentView)
-	const [searchPokemon, setSearchPokemon] = useRecoilState(Atom.viewSearchPokemon)
-	const [allMoves, setAllMoves] = useRecoilState(Atom.viewAllMoves)
+	const [currentView, setCurrentView] = useRecoilState(Atom.Teambuilder.currentView)
+	const [teams, setTeams] = useRecoilState(Atom.Teambuilder.teams)
+	const [currentTeamID, setCurrentTeamID] = useRecoilState(Atom.Teambuilder.currentTeamID)
+	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoilState(Atom.Teambuilder.currentPokemonIndex)
+	const [allPokemon, setAllPokemon] = useRecoilState(Atom.Teambuilder.allPokemon)
+	const [allMoves, setAllMoves] = useRecoilState(Atom.Teambuilder.allMoves)
+
+	const [MIN_POKEMON_ID, MAX_POKEMON_ID] = [1, 500]
 
 	useEffect(() => {
-		if (searchPokemon.length === 0) {
+		if (allPokemon.length !== MAX_POKEMON_ID - MIN_POKEMON_ID + 1) {
 			;(async () => {
-				console.log('No pokemon in localStorage, getting them now')
+				console.log('Incorrect pokemon in localStorage, getting them now')
 
 				const promises: Promise<Teambuilder.Pokemon.Abstract>[] = []
 
-				for (let id = 1; id <= 490; id++) {
+				for (let id = MIN_POKEMON_ID; id <= MAX_POKEMON_ID; id++) {
 					promises.push(getTeambuilderPokemon(id))
 				}
 
 				const results = await Promise.all(promises)
 
-				localStorage.setItem('searchPokemon', JSON.stringify(results))
+				localStorage.setItem('allPokemon', JSON.stringify(results))
 
-				setSearchPokemon(results)
+				setAllPokemon(results)
 
 				console.log('done getting pokemon data')
 			})()
@@ -81,7 +87,7 @@ export default (props: Props) => {
 		}
 	}, [])
 
-	switch (view) {
+	switch (currentView) {
 		case View.Teams:
 			return <Teams />
 		case View.Team:

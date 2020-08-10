@@ -1,38 +1,42 @@
 import { atom } from 'recoil'
 import { Teambuilder } from './interfaces'
 
-export const viewTeams = atom({
-	key: 'viewTeams',
-	default: JSON.parse(localStorage.getItem('teams') ?? '[]') as Teambuilder.Team[]
-})
+export default {
+	Teambuilder: {
+		teams: atom({
+			key: 'teambuilder-teams',
+			default: JSON.parse(localStorage.getItem('teams') ?? '[]') as Teambuilder.Team[]
+		}),
 
-export const viewCurrentView = atom({
-	key: 'viewCurrentView',
-	default: 0
-})
+		currentView: atom({
+			key: 'teambuilder-currentView',
+			default: 0
+		}),
 
-export const viewCurrentTeamID = atom({
-	key: 'viewCurrentTeam',
-	default: 0
-})
+		currentTeamID: atom({
+			key: 'teambuilder-currentTeamID',
+			default: 0
+		}),
 
-export const viewSearchPokemon = atom({
-	key: 'viewSearchPokemon',
-	default:
-		localStorage.getItem('searchPokemon') !== null
-			? (JSON.parse(localStorage.getItem('searchPokemon') as string) as Teambuilder.Pokemon.Abstract[])
-			: ([] as Teambuilder.Pokemon.Abstract[])
-})
+		allPokemon: atom({
+			key: 'teambuilder-allPokemon',
+			default:
+				localStorage.getItem('allPokemon') !== null
+					? (JSON.parse(localStorage.getItem('allPokemon') as string) as Teambuilder.Pokemon.Abstract[])
+					: ([] as Teambuilder.Pokemon.Abstract[])
+		}),
 
-export const viewCurrentPokemonIndex = atom({
-	key: 'viewCurrentPokemon',
-	default: 0
-})
+		currentPokemonIndex: atom({
+			key: 'teambuilder-currentPokemonIndex',
+			default: 0
+		}),
 
-export const viewAllMoves = atom({
-	key: 'viewAllMoves',
-	default:
-		localStorage.getItem('allMoves') !== null
-			? new Map<string, Teambuilder.Move.Abstract>(JSON.parse(localStorage.getItem('allMoves') as string))
-			: new Map<string, Teambuilder.Move.Abstract>()
-})
+		allMoves: atom({
+			key: 'teambuilder-allMoves',
+			default:
+				localStorage.getItem('allMoves') !== null
+					? new Map<string, Teambuilder.Move.Abstract>(JSON.parse(localStorage.getItem('allMoves') as string))
+					: new Map<string, Teambuilder.Move.Abstract>()
+		})
+	}
+}
