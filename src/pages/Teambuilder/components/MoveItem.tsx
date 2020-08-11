@@ -1,6 +1,6 @@
 import React from 'react'
 import { MoveItem } from '../ui'
-import { Teambuilder } from '../interfaces'
+import Teambuilder from '../../../interfaces/Teambuilder'
 
 interface Props {
 	move: Teambuilder.Move.Abstract

@@ -3,8 +3,8 @@ import React from 'react'
 import atoms from '../atoms'
 import { PokemonItem } from '../ui'
 import { useRecoilState as useRecoil } from 'recoil'
-import { Teambuilder } from '../interfaces'
-import { ViewPrimary } from '../pages/Teambuilder/Teambuilder'
+import Teambuilder from '../../../interfaces/Teambuilder'
+import { ViewPrimary } from '../views'
 import { abstractToDefaultConcrete } from '../util'
 
 interface Props {
@@ -12,14 +12,14 @@ interface Props {
 }
 
 export default (props: Props) => {
-	const [currentView, setCurrentView] = useRecoil(atoms.tb.currentView)
-	const [teams, setTeams] = useRecoil(atoms.tb.teams)
-	const [currentTeamID, setCurrentTeamID] = useRecoil(atoms.tb.currentTeamID)
-	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.tb.currentPokemonIndex)
-	const [allPokemon, setAllPokemon] = useRecoil(atoms.tb.allPokemon)
-	const [allMoves, setAllMoves] = useRecoil(atoms.tb.allMoves)
+	const [currentView, setCurrentView] = useRecoil(atoms.currentView)
+	const [teams, setTeams] = useRecoil(atoms.teams)
+	const [currentTeamID, setCurrentTeamID] = useRecoil(atoms.currentTeamID)
+	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
+	const [allPokemon, setAllPokemon] = useRecoil(atoms.allPokemon)
+	const [allMoves, setAllMoves] = useRecoil(atoms.allMoves)
 
-	const currentTeam = teams.filter(team => team.id === currentTeamID)[0]
+	const currentTeam = teams.find(team => team.id === currentTeamID) as Teambuilder.Team
 
 	const { pokemon } = props
 

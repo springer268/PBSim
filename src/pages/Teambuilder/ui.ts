@@ -164,3 +164,38 @@ export const CurrentTeamNav = styled.nav`
 		}
 	}
 `
+
+export const PokemonStage = styled.div`
+	display: flex;
+	height: 155px;
+	padding-top: 15px;
+	border: solid 1px #ddd;
+
+	div {
+		margin-right: 8px;
+	}
+
+	.form-control {
+		display: flex;
+		flex-direction: column;
+
+		label {
+			font-weight: 500;
+		}
+
+		input {
+			margin-top: 3px;
+			padding: 1px 3px;
+		}
+	}
+
+	.pokemon-img {
+		margin: -13px 0;
+		margin-left: 20px;
+		margin-right: 15px;
+		display: flex;
+		flex-direction: column;
+		width: 100px;
+		height: 100px;
+	}
+`

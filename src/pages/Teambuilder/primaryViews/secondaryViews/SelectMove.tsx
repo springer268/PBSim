@@ -1,29 +1,32 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react'
 import { useRecoilState as useRecoil } from 'recoil'
-import atoms from '../../../../atoms'
-import { Searchbar } from '../../../../ui'
-import MoveItem from '../../../../components/MoveItem'
-import { Teambuilder } from '../../../../interfaces'
+import atoms from '../../atoms'
+import { Searchbar } from '../../ui'
+import MoveItem from '../../components/MoveItem'
+import Teambuilder from '../../../../interfaces/Teambuilder'
 
 interface Props {}
 
 export default (props: Props) => {
-	const [currentView, setCurrentView] = useRecoil(atoms.tb.currentView)
-	const [teams, setTeams] = useRecoil(atoms.tb.teams)
-	const [currentTeamID, setCurrentTeamID] = useRecoil(atoms.tb.currentTeamID)
-	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.tb.currentPokemonIndex)
-	const [allPokemon, setAllPokemon] = useRecoil(atoms.tb.allPokemon)
-	const [allMoves, setAllMoves] = useRecoil(atoms.tb.allMoves)
+	const [currentView, setCurrentView] = useRecoil(atoms.currentView)
+	const [teams, setTeams] = useRecoil(atoms.teams)
+	const [currentTeamID, setCurrentTeamID] = useRecoil(atoms.currentTeamID)
+	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
+	const [allPokemon, setAllPokemon] = useRecoil(atoms.allPokemon)
+	const [allMoves, setAllMoves] = useRecoil(atoms.allMoves)
 
 	const [input, setInput] = useState<string>('')
 
-	const currentTeam = teams.filter(team => team.id === currentTeamID)[0]
-	const currentPokemon = currentTeam.pokemon.filter(pokemon => pokemon.index === currentPokemonIndex)[0]
+	const currentTeam = teams.find(team => team.id === currentTeamID) as Teambuilder.Team
+
+	const currentPokemon = currentTeam.pokemon.find(
+		pokemon => pokemon.index === currentPokemonIndex
+	) as Teambuilder.Pokemon.Concrete
 
 	const moveset =
-		allPokemon.length > 0
-			? allPokemon.filter(pokemon => pokemon.id === currentPokemon.id)[0].moveset
+		allPokemon.size > 0
+			? (allPokemon.get(currentPokemon.name) as Teambuilder.Pokemon.Abstract).moveset
 			: ([] as string[])
 
 	return (

@@ -1,39 +1,32 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import { useRecoilState as useRecoil } from 'recoil'
-import { ViewPrimary } from '../Teambuilder'
-import atoms from '../../../atoms'
-import { Teambuilder } from '../../../interfaces'
-import CurrentTeamNav from '../../../components/CurrentTeamNav'
-import PokemonStage from '../../../components/PokemonStage'
-import { Button } from '../../../ui'
+import { ViewPrimary, ViewSecondary } from '../views'
+import atoms from '../atoms'
+import Teambuilder from '../../../interfaces/Teambuilder'
+import CurrentTeamNav from '../components/CurrentTeamNav'
+import PokemonStage from '../components/PokemonStage'
+import { Button } from '../ui'
 import SearchPokemon from './secondaryViews/SearchPokemon'
 import SelectMove from './secondaryViews/SelectMove'
-
-export enum ViewSecondary {
-	Nothing,
-	Moves,
-	Pokemon,
-	Stats,
-	Items,
-	Abilities,
-	Misc
-}
 
 interface Props {}
 
 export default (props: Props) => {
-	const [currentView, setCurrentView] = useRecoil(atoms.tb.currentView)
-	const [teams, setTeams] = useRecoil(atoms.tb.teams)
-	const [currentTeamID, setCurrentTeamID] = useRecoil(atoms.tb.currentTeamID)
-	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.tb.currentPokemonIndex)
-	const [allPokemon, setAllPokemon] = useRecoil(atoms.tb.allPokemon)
-	const [allMoves, setAllMoves] = useRecoil(atoms.tb.allMoves)
+	const [currentView, setCurrentView] = useRecoil(atoms.currentView)
+	const [teams, setTeams] = useRecoil(atoms.teams)
+	const [currentTeamID, setCurrentTeamID] = useRecoil(atoms.currentTeamID)
+	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
+	const [allPokemon, setAllPokemon] = useRecoil(atoms.allPokemon)
+	const [allMoves, setAllMoves] = useRecoil(atoms.allMoves)
 
-	const [currentViewSecondary, setCurrentViewSecondary] = useRecoil(atoms.tb.currentViewSecondary)
+	const [currentViewSecondary, setCurrentViewSecondary] = useRecoil(atoms.currentViewSecondary)
 
-	const currentTeam = teams.filter(team => team.id === currentTeamID)[0]
-	const currentPokemon = currentTeam.pokemon.filter(pokemon => pokemon.index === currentPokemonIndex)[0]
+	const currentTeam = teams.find(team => team.id === currentTeamID) as Teambuilder.Team
+
+	const currentPokemon = currentTeam.pokemon.find(
+		pokemon => pokemon.index === currentPokemonIndex
+	) as Teambuilder.Pokemon.Concrete
 
 	const setCurrentPokemon = (pok: Teambuilder.Pokemon.Concrete) => {
 		setTeams(teams => {
@@ -83,7 +76,7 @@ export default (props: Props) => {
 					case ViewSecondary.Misc:
 						return 6
 					default:
-						return <h1>Big fat problem in Edit Pokemon</h1>
+						return <h1>Error: Unhandled Secondary View</h1>
 				}
 			})()}
 		</>

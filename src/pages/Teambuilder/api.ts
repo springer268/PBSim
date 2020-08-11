@@ -1,5 +1,8 @@
-import { PokeAPI, Teambuilder } from './interfaces'
+import Teambuilder from '../../interfaces/Teambuilder'
+import PokeAPI from '../../interfaces/PokeAPI'
 import axios from 'axios'
+
+// POKEMON
 
 export const getPokeAPIPokemon = async (id: number): Promise<PokeAPI.Pokemon> => {
 	return (await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`)).data as PokeAPI.Pokemon
@@ -39,6 +42,8 @@ export const getRangeOfTeambuilderPokemon = async (
 	return await Promise.all(promises)
 }
 
+// MOVES
+
 export const getPokeAPIMove = async (id: string | number): Promise<PokeAPI.Move> => {
 	return (await axios.get(`https://pokeapi.co/api/v2/move/${id}`)).data as PokeAPI.Move
 }
@@ -69,6 +74,71 @@ export const getRangeOfTeambuilderMoves = async (
 
 	for (let id = startID; id <= endID; id++) {
 		promises.push(getTeambuilderMove(id))
+	}
+
+	return await Promise.all(promises)
+}
+
+// ITEMS
+
+export const convertPokeAPIItemToTeambuilder = (data: PokeAPI.Item): Teambuilder.Item.Abstract => {
+	return {
+		sprite: data.sprites.default,
+		prettyName: data.names[5].name,
+		uglyName: data.name,
+		description: data.flavor_text_entries[0].text
+	} as Teambuilder.Item.Abstract
+}
+
+export const getPokeAPIItem = async (id: number): Promise<PokeAPI.Item> => {
+	return (await axios.get(`https://pokeapi.co/api/v2/item/${id}`)).data as PokeAPI.Item
+}
+
+export const getTeambuilderItem = async (id: number): Promise<Teambuilder.Item.Abstract> => {
+	const data = await getPokeAPIItem(id)
+	return convertPokeAPIItemToTeambuilder(data)
+}
+
+export const getRangeOfTeambuilderItems = async (
+	startID: number,
+	endID: number
+): Promise<Teambuilder.Item.Abstract[]> => {
+	const promises: Promise<Teambuilder.Item.Abstract>[] = []
+
+	for (let id = startID; id <= endID; id++) {
+		promises.push(getTeambuilderItem(id))
+	}
+
+	return await Promise.all(promises)
+}
+
+// Abilities
+
+export const convertPokeAPIAbilityToTeambuilder = (data: PokeAPI.Ability): Teambuilder.Ability.Abstract => {
+	return {
+		prettyName: data.names[5].name,
+		uglyName: data.name,
+		description: data.flavor_text_entries[0].flavor_text
+	} as Teambuilder.Ability.Abstract
+}
+
+export const getPokeAPIAbility = async (id: number): Promise<PokeAPI.Ability> => {
+	return (await axios.get(`https://pokeapi.co/api/v2/ability/${id}`)).data as PokeAPI.Ability
+}
+
+export const getTeambuilderAbility = async (id: number): Promise<Teambuilder.Ability.Abstract> => {
+	const data = await getPokeAPIAbility(id)
+	return convertPokeAPIAbilityToTeambuilder(data)
+}
+
+export const getRangeOfTeambuilderAbilities = async (
+	startID: number,
+	endID: number
+): Promise<Teambuilder.Ability.Abstract[]> => {
+	const promises: Promise<Teambuilder.Ability.Abstract>[] = []
+
+	for (let id = startID; id <= endID; id++) {
+		promises.push(getTeambuilderAbility(id))
 	}
 
 	return await Promise.all(promises)

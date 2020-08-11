@@ -1,25 +1,26 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react'
 import { useRecoilState as useRecoil } from 'recoil'
-import { ViewPrimary } from '../Teambuilder'
-import atoms from '../../../atoms'
-import CurrentTeamNav from '../../../components/CurrentTeamNav'
-import { Searchbar, Button } from '../../../ui'
-import PokemonItem from '../../../components/PokemonItem'
+import { ViewPrimary } from '../views'
+import atoms from '../atoms'
+import CurrentTeamNav from '../components/CurrentTeamNav'
+import { Searchbar, Button } from '../ui'
+import PokemonItem from '../components/PokemonItem'
+import Teambuilder from '../../../interfaces/Teambuilder'
 
 interface Props {}
 
 export default (props: Props) => {
-	const [currentView, setCurrentView] = useRecoil(atoms.tb.currentView)
-	const [teams, setTeams] = useRecoil(atoms.tb.teams)
-	const [currentTeamID, setCurrentTeamID] = useRecoil(atoms.tb.currentTeamID)
-	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.tb.currentPokemonIndex)
-	const [allPokemon, setAllPokemon] = useRecoil(atoms.tb.allPokemon)
-	const [allMoves, setAllMoves] = useRecoil(atoms.tb.allMoves)
+	const [currentView, setCurrentView] = useRecoil(atoms.currentView)
+	const [teams, setTeams] = useRecoil(atoms.teams)
+	const [currentTeamID, setCurrentTeamID] = useRecoil(atoms.currentTeamID)
+	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
+	const [allPokemon, setAllPokemon] = useRecoil(atoms.allPokemon)
+	const [allMoves, setAllMoves] = useRecoil(atoms.allMoves)
 
 	const [input, setInput] = useState<string>('')
 
-	const currentTeam = teams.filter(team => team.id === currentTeamID)[0]
+	const currentTeam = teams.find(team => team.id === currentTeamID) as Teambuilder.Team
 
 	return (
 		<>
@@ -34,13 +35,13 @@ export default (props: Props) => {
 				}}
 			/>
 			<div style={{ height: '600px', overflow: 'scroll' }}>
-				{allPokemon.map(pokemon => {
-					if (pokemon.name.includes(input.toLowerCase())) {
-						return <PokemonItem pokemon={pokemon} key={pokemon.id} />
-					} else {
-						return <></>
-					}
-				})}
+				{Array.from(allPokemon.entries()).map(([name, pokemon]) =>
+					pokemon.name.includes(input.toLowerCase()) ? (
+						<PokemonItem pokemon={pokemon} key={pokemon.id} />
+					) : (
+						<></>
+					)
+				)}
 			</div>
 		</>
 	)
