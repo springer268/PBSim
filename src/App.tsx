@@ -2,8 +2,9 @@ import React from 'react'
 import { createGlobalStyle } from 'styled-components'
 import { RecoilRoot } from 'recoil'
 import { BrowserRouter, Route } from 'react-router-dom'
-import Home from './pages/Home/Home'
+import Home from './pages/Teambuilder/Home/Home'
 import Teambuilder from './pages/Teambuilder/Teambuilder'
+import Battle from './pages/Battle/Battle'
 
 // linear-gradient(-135deg, #02e6ee, #1f3cce)
 // linear-gradient(-135deg, #821a1a, #ff0000)
@@ -11,6 +12,7 @@ import Teambuilder from './pages/Teambuilder/Teambuilder'
 const GlobalStyles = createGlobalStyle`
 	:root {
 		--bg-main: linear-gradient(-135deg, #f45c43, #eb3349);
+		--bg-secondary: linear-gradient(-135deg, #333, #444);
 	}
 
 	* {
@@ -28,6 +30,7 @@ const App = () => {
 				<GlobalStyles />
 				<Route exact path='/' component={Home} />
 				<Route exact path='/teambuilder' component={Teambuilder} />
+				<Route exact path='/battle' component={Battle} />
 			</RecoilRoot>
 		</BrowserRouter>
 	)

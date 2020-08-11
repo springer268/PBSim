@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { useRecoilState as useRecoil } from 'recoil'
 import atoms from '../../atoms'
-import { Searchbar } from '../../ui'
+import { Searchbar } from '../../../../ui'
 import PokemonItem from '../../components/PokemonItem'
 import Teambuilder from '../../../../interfaces/Teambuilder'
 

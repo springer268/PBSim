@@ -4,7 +4,7 @@ import { useRecoilState as useRecoil } from 'recoil'
 import { ViewPrimary } from '../views'
 import atoms from '../atoms'
 import CurrentTeamNav from '../components/CurrentTeamNav'
-import { Searchbar, Button } from '../ui'
+import { Searchbar, Button } from '../../../ui'
 import PokemonItem from '../components/PokemonItem'
 import Teambuilder from '../../../interfaces/Teambuilder'
 

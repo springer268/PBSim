@@ -1,11 +1,28 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import atoms from '../atoms'
-import { PokemonItem } from '../ui'
+import styled from 'styled-components'
 import { useRecoilState as useRecoil } from 'recoil'
 import Teambuilder from '../../../interfaces/Teambuilder'
 import { ViewPrimary } from '../views'
 import { abstractToDefaultConcrete } from '../util'
+
+const PokemonItem = styled.div`
+	display: flex;
+	padding: 10px;
+	border: solid 1px #ddd;
+	cursor: pointer;
+
+	img {
+		width: 70px;
+		margin: auto 0;
+	}
+
+	p {
+		text-transform: capitalize;
+		margin: auto 0 auto 15px;
+	}
+`
 
 interface Props {
 	pokemon: Teambuilder.Pokemon.Abstract

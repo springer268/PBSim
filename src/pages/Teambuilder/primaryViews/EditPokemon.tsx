@@ -6,7 +6,7 @@ import atoms from '../atoms'
 import Teambuilder from '../../../interfaces/Teambuilder'
 import CurrentTeamNav from '../components/CurrentTeamNav'
 import PokemonStage from '../components/PokemonStage'
-import { Button } from '../ui'
+import { Button } from '../../../ui'
 import SearchPokemon from './secondaryViews/SearchPokemon'
 import SelectMove from './secondaryViews/SelectMove'
 

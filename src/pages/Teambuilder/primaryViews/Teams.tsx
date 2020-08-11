@@ -1,11 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import { useRecoilState as useRecoil } from 'recoil'
-import { Wrapper } from '../ui'
-import { Button } from '../ui'
-import { Heading } from '../ui'
+import { Button, Wrapper, Heading, StyledLink } from '../../../ui'
 import atoms from '../atoms'
-import TeamCard from '../components/TeamCard'
+import TeamCard from '../../../components/TeamCard'
 
 interface Props {}
 
@@ -20,6 +18,9 @@ export default (props: Props) => {
 	return (
 		<>
 			<Wrapper>
+				<StyledLink to='/'>
+					<Button style={{ marginTop: '15px' }}>Back</Button>
+				</StyledLink>
 				<Heading>Teambuilder</Heading>
 				<Button
 					style={{ marginBottom: '15px' }}
@@ -42,11 +43,13 @@ export default (props: Props) => {
 				>
 					Add new team
 				</Button>
-				{teams.length > 0 && allPokemon.size > 0 ? (
-					teams.map(team => <TeamCard team={team} key={team.id} />)
-				) : (
-					<p>You have no teams!</p>
-				)}
+				<div style={{ marginBottom: '20px' }}>
+					{teams.length > 0 && allPokemon.size > 0 ? (
+						teams.map(team => <TeamCard team={team} key={team.id} />)
+					) : (
+						<p>You have no teams!</p>
+					)}
+				</div>
 			</Wrapper>
 		</>
 	)

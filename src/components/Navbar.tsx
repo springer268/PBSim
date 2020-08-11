@@ -2,7 +2,31 @@
 import React from 'react'
 import { useRecoilState as useRecoil } from 'recoil'
 import atoms from '../pages/Teambuilder/atoms'
-import { Navbar } from '../pages/Teambuilder/ui'
+import styled from 'styled-components'
+import { StyledLink } from '../ui'
+
+export const Navbar = styled.nav`
+	display: flex;
+	width: 100%;
+	height: 50px;
+	background: var(--bg-main);
+	justify-content: space-between;
+
+	${StyledLink} {
+		display: flex;
+
+		h1 {
+			margin: auto 15px;
+			color: #fff;
+		}
+	}
+
+	button {
+		width: 100px;
+		font-size: 18px;
+		cursor: pointer;
+	}
+`
 
 interface Props {}
 
@@ -16,7 +40,9 @@ export default (props: Props) => {
 
 	return (
 		<Navbar>
-			<h1>Pokemon Battle Simulator</h1>
+			<StyledLink to='/'>
+				<h1>Pokemon Battle Simulator</h1>
+			</StyledLink>
 			<button
 				onClick={() => {
 					setTeams([])

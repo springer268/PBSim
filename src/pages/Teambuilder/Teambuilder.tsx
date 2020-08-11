@@ -15,8 +15,10 @@ import Teams from './primaryViews/Teams'
 import Team from './primaryViews/Team'
 import SearchPokemon from './primaryViews/SearchPokemon'
 import EditPokemon from './primaryViews/EditPokemon'
+import SideNav from '../../components/SideNav'
 import Navbar from '../../components/Navbar'
 import { ViewPrimary } from './views'
+import { Grid } from '../../ui'
 
 interface RouteParams {}
 
@@ -32,7 +34,7 @@ export default (props: Props) => {
 	const [allItems, setAllItems] = useRecoil(atoms.allItems)
 	const [allAbilities, setAllAbilities] = useRecoil(atoms.allAbilities)
 
-	const [MIN_POKEMON_ID, MAX_POKEMON_ID] = [1, 800]
+	const [MIN_POKEMON_ID, MAX_POKEMON_ID] = [1, 450]
 
 	useEffect(() => {
 		if (allPokemon.size === 0) {
@@ -135,20 +137,25 @@ export default (props: Props) => {
 	return (
 		<>
 			<Navbar />
-			{((): JSX.Element => {
-				switch (currentView) {
-					case ViewPrimary.Teams:
-						return <Teams />
-					case ViewPrimary.Team:
-						return <Team />
-					case ViewPrimary.EditPokemon:
-						return <EditPokemon />
-					case ViewPrimary.SearchPokemon:
-						return <SearchPokemon />
-					default:
-						return <h1>Error: Unhandled Primary View</h1>
-				}
-			})()}
+			<Grid>
+				<SideNav />
+				<div>
+					{((): JSX.Element => {
+						switch (currentView) {
+							case ViewPrimary.Teams:
+								return <Teams />
+							case ViewPrimary.Team:
+								return <Team />
+							case ViewPrimary.EditPokemon:
+								return <EditPokemon />
+							case ViewPrimary.SearchPokemon:
+								return <SearchPokemon />
+							default:
+								return <h1>Error: Unhandled Primary View</h1>
+						}
+					})()}
+				</div>
+			</Grid>
 		</>
 	)
 }
