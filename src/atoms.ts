@@ -2,7 +2,7 @@ import { atom } from 'recoil'
 import { Teambuilder } from './interfaces'
 
 export default {
-	Teambuilder: {
+	tb: {
 		teams: atom({
 			key: 'teambuilder-teams',
 			default: JSON.parse(localStorage.getItem('teams') ?? '[]') as Teambuilder.Team[]
@@ -37,6 +37,11 @@ export default {
 				localStorage.getItem('allMoves') !== null
 					? new Map<string, Teambuilder.Move.Abstract>(JSON.parse(localStorage.getItem('allMoves') as string))
 					: new Map<string, Teambuilder.Move.Abstract>()
+		}),
+
+		currentViewSecondary: atom({
+			key: 'teambuilder-currentViewSecondary',
+			default: 0
 		})
 	}
 }

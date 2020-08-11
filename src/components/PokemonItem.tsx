@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
-import Atom from '../atoms'
+import atoms from '../atoms'
 import { PokemonItem } from '../ui'
-import { useRecoilState } from 'recoil'
+import { useRecoilState as useRecoil } from 'recoil'
 import { Teambuilder } from '../interfaces'
-import { View } from '../pages/Teambuilder/Teambuilder'
+import { ViewPrimary } from '../pages/Teambuilder/Teambuilder'
 import { abstractToDefaultConcrete } from '../util'
 
 interface Props {
@@ -12,12 +12,12 @@ interface Props {
 }
 
 export default (props: Props) => {
-	const [currentView, setCurrentView] = useRecoilState(Atom.Teambuilder.currentView)
-	const [teams, setTeams] = useRecoilState(Atom.Teambuilder.teams)
-	const [currentTeamID, setCurrentTeamID] = useRecoilState(Atom.Teambuilder.currentTeamID)
-	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoilState(Atom.Teambuilder.currentPokemonIndex)
-	const [allPokemon, setAllPokemon] = useRecoilState(Atom.Teambuilder.allPokemon)
-	const [allMoves, setAllMoves] = useRecoilState(Atom.Teambuilder.allMoves)
+	const [currentView, setCurrentView] = useRecoil(atoms.tb.currentView)
+	const [teams, setTeams] = useRecoil(atoms.tb.teams)
+	const [currentTeamID, setCurrentTeamID] = useRecoil(atoms.tb.currentTeamID)
+	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.tb.currentPokemonIndex)
+	const [allPokemon, setAllPokemon] = useRecoil(atoms.tb.allPokemon)
+	const [allMoves, setAllMoves] = useRecoil(atoms.tb.allMoves)
 
 	const currentTeam = teams.filter(team => team.id === currentTeamID)[0]
 
@@ -48,7 +48,7 @@ export default (props: Props) => {
 					pokemon: [...currentTeam.pokemon, abstractToDefaultConcrete(pokemon, currentTeam.pokemon.length)]
 				})
 				setCurrentPokemonIndex(currentTeam.pokemon.length)
-				setCurrentView(View.EditPokemon)
+				setCurrentView(ViewPrimary.EditPokemon)
 			}}
 		>
 			<img src={pokemon.sprite} alt={pokemon.name} />

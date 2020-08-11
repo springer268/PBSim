@@ -5,7 +5,14 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import Home from './pages/Home/Home'
 import Teambuilder from './pages/Teambuilder/Teambuilder'
 
+// linear-gradient(-135deg, #02e6ee, #1f3cce)
+// linear-gradient(-135deg, #821a1a, #ff0000)
+// linear-gradient(-135deg, #c850c0, #4158d0)
 const GlobalStyles = createGlobalStyle`
+	:root {
+		--bg-main: linear-gradient(-135deg, #f45c43, #eb3349);
+	}
+
 	* {
 		margin: 0;
 		padding: 0;

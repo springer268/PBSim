@@ -2,9 +2,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Teambuilder } from '../interfaces'
-import { View } from '../pages/Teambuilder/Teambuilder'
-import { useRecoilState } from 'recoil'
-import Atom from '../atoms'
+import { ViewPrimary } from '../pages/Teambuilder/Teambuilder'
+import { ViewSecondary } from '../pages/Teambuilder/primaryViews/EditPokemon'
+import { useRecoilState as useRecoil } from 'recoil'
+import atoms from '../atoms'
 
 const PokemonStage = styled.div`
 	display: flex;
@@ -47,12 +48,13 @@ interface Props {
 
 export default (props: Props) => {
 	const { pokemon } = props
-	const [currentView, setCurrentView] = useRecoilState(Atom.Teambuilder.currentView)
-	const [teams, setTeams] = useRecoilState(Atom.Teambuilder.teams)
-	const [currentTeamID, setCurrentTeamID] = useRecoilState(Atom.Teambuilder.currentTeamID)
-	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoilState(Atom.Teambuilder.currentPokemonIndex)
-	const [allPokemon, setAllPokemon] = useRecoilState(Atom.Teambuilder.allPokemon)
-	const [allMoves, setAllMoves] = useRecoilState(Atom.Teambuilder.allMoves)
+	const [currentView, setCurrentView] = useRecoil(atoms.tb.currentView)
+	const [teams, setTeams] = useRecoil(atoms.tb.teams)
+	const [currentTeamID, setCurrentTeamID] = useRecoil(atoms.tb.currentTeamID)
+	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.tb.currentPokemonIndex)
+	const [allPokemon, setAllPokemon] = useRecoil(atoms.tb.allPokemon)
+	const [allMoves, setAllMoves] = useRecoil(atoms.tb.allMoves)
+	const [currentViewSecondary, setCurrentViewSecondary] = useRecoil(atoms.tb.currentViewSecondary)
 
 	return (
 		<PokemonStage>
@@ -77,8 +79,11 @@ export default (props: Props) => {
 					<input
 						type='text'
 						onClick={() => {
-							if (currentView !== View.SelectMove) {
-								setCurrentView(View.SelectMove)
+							if (currentView !== ViewPrimary.EditPokemon) {
+								setCurrentView(ViewPrimary.EditPokemon)
+							}
+							if (currentViewSecondary !== ViewSecondary.Moves) {
+								setCurrentViewSecondary(ViewSecondary.Moves)
 							}
 						}}
 					/>

@@ -1,11 +1,30 @@
 import styled from 'styled-components'
 
+export const Navbar = styled.nav`
+	display: flex;
+	width: 100%;
+	height: 50px;
+	background: var(--bg-main);
+	justify-content: space-between;
+
+	h1 {
+		margin: auto 15px;
+		color: #fff;
+	}
+
+	button {
+		width: 100px;
+		font-size: 18px;
+		cursor: pointer;
+	}
+`
+
 export const Wrapper = styled.div`
 	margin: 0 5%;
 `
 
 export const Button = styled.button`
-	background: linear-gradient(-135deg, #02e6ee, #1f3cce);
+	background: var(--bg-main);
 	border: none;
 	padding: 5px 10px;
 	color: white;
@@ -19,10 +38,20 @@ export const TeamCard = styled.div`
 	display: flex;
 	flex-direction: column;
 
-	h2 {
-		margin: 10px 15px;
+	.top {
+		display: flex;
+		justify-content: space-between;
 
-		&:hover {
+		h2 {
+			margin: 10px 15px;
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+
+		i {
+			margin: auto 15px auto 0;
 			cursor: pointer;
 		}
 	}
@@ -40,6 +69,10 @@ export const TeamCard = styled.div`
 				cursor: pointer;
 			}
 		}
+	}
+
+	p.fallback {
+		margin: 0px 0px 15px 15px;
 	}
 `
 
@@ -87,5 +120,47 @@ export const PokemonItem = styled.div`
 	p {
 		text-transform: capitalize;
 		margin: auto 0 auto 15px;
+	}
+`
+
+export const CurrentTeamNav = styled.nav`
+	display: flex;
+	border-bottom: solid 1px #ddd;
+
+	button {
+		margin: auto 15px;
+	}
+
+	ul {
+		display: flex;
+		list-style: none;
+
+		li {
+			display: flex;
+			flex-direction: column;
+			padding: 5px 10px;
+			border-left: solid #ccc 1px;
+			cursor: pointer;
+
+			&:nth-last-of-type(1) {
+				border-right: solid #ccc 1px;
+				width: 85px;
+
+				i {
+					margin: auto;
+					transform: scale(1.1);
+				}
+			}
+
+			img {
+				margin: auto;
+				width: 50px;
+			}
+
+			p {
+				text-transform: capitalize;
+				text-align: center;
+			}
+		}
 	}
 `

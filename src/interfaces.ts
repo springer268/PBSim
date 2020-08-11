@@ -2,8 +2,8 @@ export interface AxiosResponse<T> {
 	data: T
 }
 
-export declare module PokeAPI {
-	module Pokemon {
+export module PokeAPI {
+	export module Pokemon {
 		export interface Response {
 			abilities: Ability[]
 			base_experience: number
@@ -265,7 +265,7 @@ export declare module PokeAPI {
 	export interface Move extends PokeAPI.Move.Response {}
 }
 
-export declare module Teambuilder {
+export module Teambuilder {
 	export module Pokemon {
 		export interface Abstract {
 			name: string
@@ -318,4 +318,4 @@ export declare module Teambuilder {
 	}
 }
 
-export declare module Game {}
+export module Game {}

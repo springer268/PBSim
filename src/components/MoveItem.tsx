@@ -8,6 +8,7 @@ interface Props {
 
 export default (props: Props) => {
 	const { move } = props
+
 	return (
 		<MoveItem key={move.uglyName}>
 			<p>{move.prettyName}</p>
