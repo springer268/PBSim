@@ -9,9 +9,10 @@ import Teambuilder from '../../../interfaces/Teambuilder'
 const CurrentTeamNav = styled.nav`
 	display: flex;
 	border-bottom: solid 1px #ddd;
+	height: 90px;
 
 	button {
-		margin: auto 15px;
+		margin: auto 25px;
 	}
 
 	ul {

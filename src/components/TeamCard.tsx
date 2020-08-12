@@ -18,16 +18,18 @@ const TeamCard = styled.div`
 		justify-content: space-between;
 
 		h2 {
-			margin: 10px 15px;
-
 			&:hover {
 				cursor: pointer;
 			}
 		}
 
-		i {
-			margin: auto 15px auto 0;
-			cursor: pointer;
+		.icons {
+			display: flex;
+
+			i {
+				margin: auto 15px auto 0;
+				cursor: pointer;
+			}
 		}
 	}
 
@@ -70,6 +72,7 @@ export default (props: Props) => {
 			<TeamCard key={team.id}>
 				<div className='top'>
 					<h2
+						style={{ margin: '15px 0 0 15px' }}
 						onClick={() => {
 							setCurrentTeamID(team.id)
 							setCurrentView(ViewPrimary.Team)
@@ -77,17 +80,27 @@ export default (props: Props) => {
 					>
 						{team.name}
 					</h2>
-					<i
-						title={`Delete team ${team.name}`}
-						className='fa fa-trash'
-						onClick={() => {
-							setTeams(teams => {
-								const val = teams.filter(team2 => team2.id !== team.id)
-								localStorage.setItem('teams', JSON.stringify(val))
-								return val
-							})
-						}}
-					></i>
+					<div className='icons'>
+						<i
+							title={`Add member to ${team.name}`}
+							className='fa fa-plus'
+							onClick={() => {
+								setCurrentTeamID(team.id)
+								setCurrentView(ViewPrimary.SearchPokemon)
+							}}
+						></i>
+						<i
+							title={`Delete ${team.name}`}
+							className='fa fa-trash'
+							onClick={() => {
+								setTeams(teams => {
+									const val = teams.filter(team2 => team2.id !== team.id)
+									localStorage.setItem('teams', JSON.stringify(val))
+									return val
+								})
+							}}
+						></i>
+					</div>
 				</div>
 
 				{team.pokemon.length > 0 ? (
@@ -105,7 +118,6 @@ export default (props: Props) => {
 									key={pokemon.index}
 								>
 									<img src={abstractPokemon.sprite} alt={pokemon.name} />
-									<p>{pokemon.name}</p>
 								</li>
 							)
 						})}

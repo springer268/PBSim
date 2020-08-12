@@ -6,7 +6,7 @@ const Navbar = styled.nav`
 	height: 93vh;
 	min-height: 100%;
 	max-height: 100vh;
-	width: 100px;
+	width: 100%;
 	display: flex;
 	flex-direction: column;
 	position: sticky;

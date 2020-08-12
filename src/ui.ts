@@ -3,16 +3,16 @@ import { Link } from 'react-router-dom'
 
 export const Grid = styled.div`
 	display: grid;
-	grid-template-columns: 100px auto;
+	grid-template-columns: 110px auto;
 `
 
 export const Heading = styled.h1`
 	font-size: 38px;
-	margin: 10px 0;
+	margin: 15px 0;
 `
 
 export const Wrapper = styled.div`
-	margin: 0 5% 0 3%;
+	margin: 0 60px 0 36px;
 `
 
 export const Button = styled.button`
@@ -23,6 +23,8 @@ export const Button = styled.button`
 	font-weight: 500;
 	outline: none;
 	cursor: pointer;
+	margin: 15px 0;
+	display: block;
 `
 
 export const StyledLink = styled(Link)`
@@ -38,9 +40,10 @@ export const Searchbar = styled.input`
 	outline: none;
 `
 
-export const Select = styled.select`
+export const Select = styled.select<{ marginless?: boolean }>`
 	padding: 5px 10px;
 	min-width: 200px;
+	margin: ${props => (props.marginless ? '0' : '15px 0')};
 
 	option {
 		padding: 10px;

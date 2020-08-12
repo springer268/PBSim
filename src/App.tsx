@@ -6,12 +6,13 @@ import Home from './pages/Teambuilder/Home/Home'
 import Teambuilder from './pages/Teambuilder/Teambuilder'
 import Battle from './pages/Battle/Battle'
 
-// linear-gradient(-135deg, #02e6ee, #1f3cce)
-// linear-gradient(-135deg, #821a1a, #ff0000)
-// linear-gradient(-135deg, #c850c0, #4158d0)
+const blue = 'linear-gradient(-135deg, #02e6ee, #1f3cce)'
+const purple = 'linear-gradient(-135deg, #c850c0, #4158d0)'
+const red = 'linear-gradient(-135deg, #f45c43, #eb3349)'
+
 const GlobalStyles = createGlobalStyle`
 	:root {
-		--bg-main: linear-gradient(-135deg, #f45c43, #eb3349);
+		--bg-main: ${red};
 		--bg-secondary: linear-gradient(-135deg, #333, #444);
 	}
 

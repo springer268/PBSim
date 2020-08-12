@@ -5,12 +5,12 @@ import { ViewPrimary, ViewSecondary } from './views'
 export default {
 	currentView: atom({
 		key: 'teambuilder-currentView',
-		default: ViewPrimary.Teams
+		default: ViewPrimary.EditPokemon
 	}),
 
 	currentViewSecondary: atom({
 		key: 'teambuilder-currentViewSecondary',
-		default: ViewSecondary.Nothing
+		default: ViewSecondary.Moves
 	}),
 
 	teams: atom({
@@ -62,5 +62,15 @@ export default {
 						JSON.parse(localStorage.getItem('allAbilities') as string)
 				  )
 				: new Map<string, Teambuilder.Ability.Abstract>()
+	}),
+
+	editPokemonInput: atom({
+		key: 'teambuilder-editPokemonInput',
+		default: ''
+	}),
+
+	currentMoveIndex: atom({
+		key: 'teambuilder-currentMoveIndex',
+		default: 0
 	})
 }

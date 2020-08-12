@@ -7,13 +7,14 @@ import TeamCard from '../../components/TeamCard'
 import Teambuilder from '../../interfaces/Teambuilder'
 import SideNav from '../../components/SideNav'
 import { Grid } from '../../ui'
-import styled from 'styled-components'
 
 interface Props {}
 
 export default (props: Props) => {
 	const [teams, setTeams] = useRecoil(atoms.teams)
-	const [selectedTeamID, setSelectedTeamID] = useState<number>(0)
+	const [selectedTeamID, setSelectedTeamID] = useState<number>(
+		teams.map(team => team.id).reduce((max, cur) => (cur > max ? cur : max), 0)
+	)
 
 	return (
 		<>
@@ -23,21 +24,40 @@ export default (props: Props) => {
 				<div>
 					<Wrapper>
 						<StyledLink to='/'>
-							<Button style={{ marginTop: '15px' }}>Back</Button>
+							<Button>Back</Button>
 						</StyledLink>
-						<Heading>Pick a team</Heading>
-						<Button style={{ display: 'block', margin: '15px 0' }}>Search for games</Button>
-						<Select
-							style={{ margin: '0 0 15px 0' }}
-							onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-								setSelectedTeamID(Number.parseInt(e.target.value))
-							}
-						>
-							{teams.map(team => (
-								<option value={team.id}>{team.name}</option>
-							))}
-						</Select>
-						<TeamCard team={teams.find(team => team.id === selectedTeamID) as Teambuilder.Team} />
+						{teams.length > 0 ? (
+							<>
+								<Heading>Pick a team</Heading>
+								<Button>Search for games</Button>
+								{teams.length > 1 ? (
+									<Select
+										marginless
+										onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+											setSelectedTeamID(Number.parseInt(e.target.value))
+										}
+									>
+										{teams.map(team => (
+											<option value={team.id}>{team.name}</option>
+										))}
+									</Select>
+								) : (
+									<></>
+								)}
+								<div style={{ marginTop: '15px' }}>
+									<TeamCard
+										team={teams.find(team => team.id === selectedTeamID) as Teambuilder.Team}
+									/>
+								</div>
+							</>
+						) : (
+							<>
+								<Heading>You have no teams!</Heading>
+								<StyledLink to='/teambuilder'>
+									<Button>Make some here!</Button>
+								</StyledLink>
+							</>
+						)}
 					</Wrapper>
 				</div>
 			</Grid>

@@ -22,17 +22,10 @@ export default (props: Props) => {
 	return (
 		<>
 			<Wrapper>
-				<Button style={{ margin: '15px 0 0 0' }} onClick={() => setCurrentView(ViewPrimary.Teams)}>
-					Back
-				</Button>
+				<Button onClick={() => setCurrentView(ViewPrimary.Teams)}>Back</Button>
 				<Heading>{currentTeam.name}</Heading>
 				{currentTeam.pokemon.length < 6 ? (
-					<Button
-						style={{ margin: '0px 0 20px 0' }}
-						onClick={() => setCurrentView(ViewPrimary.SearchPokemon)}
-					>
-						Add new Pokemon
-					</Button>
+					<Button onClick={() => setCurrentView(ViewPrimary.SearchPokemon)}>Add new Pokemon</Button>
 				) : (
 					<></>
 				)}

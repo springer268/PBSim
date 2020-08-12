@@ -43,15 +43,6 @@ export default (props: Props) => {
 			<StyledLink to='/'>
 				<h1>Pokemon Battle Simulator</h1>
 			</StyledLink>
-			<button
-				onClick={() => {
-					setTeams([])
-					localStorage.clear()
-					document.location.reload()
-				}}
-			>
-				Clear
-			</button>
 		</Navbar>
 	)
 }

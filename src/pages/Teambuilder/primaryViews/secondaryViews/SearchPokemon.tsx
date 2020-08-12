@@ -15,20 +15,12 @@ export default (props: Props) => {
 	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
 	const [allPokemon, setAllPokemon] = useRecoil(atoms.allPokemon)
 	const [allMoves, setAllMoves] = useRecoil(atoms.allMoves)
-
-	const [input, setInput] = useState<string>('')
+	const [input, setInput] = useRecoil(atoms.editPokemonInput)
 
 	const currentTeam = teams.find(team => team.id === currentTeamID) as Teambuilder.Team
 
 	return (
 		<>
-			<Searchbar
-				type='text'
-				placeholder='Search for a Pokemon'
-				onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-					setInput(e.target.value)
-				}}
-			/>
 			<div style={{ height: '395px', overflow: 'scroll' }}>
 				{Array.from(allPokemon.entries()).map(([name, pokemon]) =>
 					pokemon.name.includes(input.toLowerCase()) ? (

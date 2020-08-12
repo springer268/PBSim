@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react'
+import React, { useState } from 'react'
 import Teambuilder from '../../../interfaces/Teambuilder'
 import { ViewPrimary, ViewSecondary } from '../views'
 import { useRecoilState as useRecoil } from 'recoil'
@@ -54,6 +54,8 @@ export default (props: Props) => {
 	const [allPokemon, setAllPokemon] = useRecoil(atoms.allPokemon)
 	const [allMoves, setAllMoves] = useRecoil(atoms.allMoves)
 	const [currentViewSecondary, setCurrentViewSecondary] = useRecoil(atoms.currentViewSecondary)
+	const [input, setInput] = useRecoil(atoms.editPokemonInput)
+	const [currentMoveIndex, setCurrentMoveIndex] = useRecoil(atoms.currentMoveIndex)
 
 	const abstractPokemon = allPokemon.get(pokemon.name) as Teambuilder.Pokemon.Abstract
 
@@ -63,7 +65,17 @@ export default (props: Props) => {
 				<img src={abstractPokemon.sprite} alt={pokemon.name} />
 				<div className='form-control'>
 					<label htmlFor=''>Pokemon</label>
-					<input type='text' value={pokemon.name} />
+					<input
+						type='text'
+						placeholder={pokemon.name}
+						onClick={() => {
+							setCurrentView(ViewPrimary.EditPokemon)
+							setCurrentViewSecondary(ViewSecondary.Pokemon)
+						}}
+						onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+							setInput(e.target.value)
+						}}
+					/>
 				</div>
 			</div>
 			<div className='details'>
@@ -77,20 +89,24 @@ export default (props: Props) => {
 			<div className='moves'>
 				<div className='form-control'>
 					<label htmlFor=''>Moves</label>
-					<input
-						type='text'
-						onClick={() => {
-							if (currentView !== ViewPrimary.EditPokemon) {
-								setCurrentView(ViewPrimary.EditPokemon)
-							}
-							if (currentViewSecondary !== ViewSecondary.Moves) {
-								setCurrentViewSecondary(ViewSecondary.Moves)
-							}
-						}}
-					/>
-					<input type='text' />
-					<input type='text' />
-					<input type='text' />
+					{[0, 1, 2, 3].map(i => {
+						const actualName = allMoves.get(pokemon.moves[i]?.name)?.prettyName
+
+						return (
+							<input
+								placeholder={actualName || ''}
+								type='text'
+								onClick={() => {
+									setCurrentMoveIndex(i)
+									setCurrentView(ViewPrimary.EditPokemon)
+									setCurrentViewSecondary(ViewSecondary.Moves)
+								}}
+								onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+									setInput(e.target.value)
+								}}
+							/>
+						)
+					})}
 				</div>
 			</div>
 		</PokemonStage>
