@@ -5,7 +5,7 @@ import { ViewPrimary, ViewSecondary } from './pages/Teambuilder/views'
 export default {
 	currentView: atom({
 		key: 'teambuilder-currentView',
-		default: ViewPrimary.Team
+		default: ViewPrimary.Teams
 	}),
 
 	currentViewSecondary: atom({
