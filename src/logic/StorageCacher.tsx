@@ -1,23 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect } from 'react'
 import { useRecoilState as useRecoil } from 'recoil'
-import atoms from '../atoms'
-import Teambuilder from '../interfaces/Teambuilder'
 import {
 	getRangeOfTeambuilderPokemon,
 	getRangeOfTeambuilderMoves,
 	getRangeOfTeambuilderItems,
 	getRangeOfTeambuilderAbilities
-} from '../api'
+} from 'api'
+import Teambuilder from 'interfaces/Teambuilder'
+import atoms from 'atoms'
 
 interface Props {}
 
 export default (props: Props) => {
-	const [currentView, setCurrentView] = useRecoil(atoms.currentView)
-	const [teams, setTeams] = useRecoil(atoms.teams)
-	const [currentTeamID, setCurrentTeamID] = useRecoil(atoms.currentTeamID)
-	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
 	const [allPokemon, setAllPokemon] = useRecoil(atoms.allPokemon)
 	const [allMoves, setAllMoves] = useRecoil(atoms.allMoves)
 	const [allItems, setAllItems] = useRecoil(atoms.allItems)

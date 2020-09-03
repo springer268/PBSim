@@ -1,9 +1,8 @@
 import React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
+import { Navbar, SideNav } from 'components'
+import { Heading, Wrapper, StyledLink, Grid } from 'ui'
 import styled from 'styled-components'
-import Navbar from '../../components/Navbar'
-import SideNav from '../../components/SideNav'
-import { Heading, Wrapper, StyledLink, Grid } from '../../ui'
 
 const Styling = styled.div``
 

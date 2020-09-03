@@ -1,57 +1,26 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import { useRecoilState as useRecoil } from 'recoil'
+import { CurrentTeamNav, PokemonStage } from 'components'
+import { Button } from 'ui'
+import Teambuilder from 'interfaces/Teambuilder'
+import atoms from 'atoms'
+import { SearchPokemon, SelectMove } from './secondaryViews'
 import { ViewPrimary, ViewSecondary } from '../views'
-import atoms from '../../../atoms'
-import Teambuilder from '../../../interfaces/Teambuilder'
-import CurrentTeamNav from '../components/CurrentTeamNav'
-import PokemonStage from '../components/PokemonStage'
-import { Button } from '../../../ui'
-import SearchPokemon from './secondaryViews/SearchPokemon'
-import SelectMove from './secondaryViews/SelectMove'
 
 interface Props {}
 
 export default (props: Props) => {
-	const [currentView, setCurrentView] = useRecoil(atoms.currentView)
-	const [teams, setTeams] = useRecoil(atoms.teams)
-	const [currentTeamID, setCurrentTeamID] = useRecoil(atoms.currentTeamID)
-	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
-	const [allPokemon, setAllPokemon] = useRecoil(atoms.allPokemon)
-	const [allMoves, setAllMoves] = useRecoil(atoms.allMoves)
-
-	const [currentViewSecondary, setCurrentViewSecondary] = useRecoil(atoms.currentViewSecondary)
+	const [, setCurrentView] = useRecoil(atoms.currentView)
+	const [teams] = useRecoil(atoms.teams)
+	const [currentTeamID] = useRecoil(atoms.currentTeamID)
+	const [currentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
+	const [currentViewSecondary] = useRecoil(atoms.currentViewSecondary)
 
 	const currentTeam = teams.find(team => team.id === currentTeamID) as Teambuilder.Team
 
 	const currentPokemon = currentTeam.pokemon.find(
 		pokemon => pokemon.index === currentPokemonIndex
 	) as Teambuilder.Pokemon.Concrete
-
-	const setCurrentPokemon = (pok: Teambuilder.Pokemon.Concrete) => {
-		setTeams(teams => {
-			const val = teams.map(team => {
-				if (team.id === currentTeamID) {
-					return {
-						...team,
-						pokemon: team.pokemon.map(pokemon => {
-							if (pokemon.index === currentPokemonIndex) {
-								return pok
-							} else {
-								return pokemon
-							}
-						})
-					}
-				} else {
-					return team
-				}
-			})
-
-			localStorage.setItem('teams', JSON.stringify(val))
-
-			return val
-		})
-	}
 
 	return (
 		<>

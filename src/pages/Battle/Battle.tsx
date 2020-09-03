@@ -1,17 +1,14 @@
 import React, { useState } from 'react'
-import Navbar from '../../components/Navbar'
-import { Wrapper, Heading, Select, Button, StyledLink } from '../../ui'
 import { useRecoilState as useRecoil } from 'recoil'
-import atoms from '../../atoms'
-import TeamCard from '../../components/TeamCard'
-import Teambuilder from '../../interfaces/Teambuilder'
-import SideNav from '../../components/SideNav'
-import { Grid } from '../../ui'
+import { Navbar, TeamCard, SideNav } from 'components'
+import { Wrapper, Heading, Select, Button, StyledLink, Grid } from 'ui'
+import Teambuilder from 'interfaces/Teambuilder'
+import atoms from 'atoms'
 
 interface Props {}
 
 export default (props: Props) => {
-	const [teams, setTeams] = useRecoil(atoms.teams)
+	const [teams] = useRecoil(atoms.teams)
 	const [selectedTeamID, setSelectedTeamID] = useState<number>(
 		teams.map(team => team.id).reduce((max, cur) => (cur > max ? cur : max), 0)
 	)

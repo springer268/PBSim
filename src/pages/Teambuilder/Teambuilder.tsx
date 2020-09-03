@@ -1,31 +1,19 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import { useRecoilState as useRecoil } from 'recoil'
-import atoms from '../../atoms'
-import Teams from './primaryViews/Teams'
-import Team from './primaryViews/Team'
-import SearchPokemon from './primaryViews/SearchPokemon'
-import EditPokemon from './primaryViews/EditPokemon'
-import SideNav from '../../components/SideNav'
-import Navbar from '../../components/Navbar'
+import { SideNav, Navbar } from 'components'
+import { Grid } from 'ui'
+import { Team, Teams, SearchPokemon, EditPokemon } from './primaryViews'
 import { ViewPrimary } from './views'
-import { Grid } from '../../ui'
+import atoms from 'atoms'
 
 interface RouteParams {}
 
 interface Props extends RouteComponentProps<RouteParams> {}
 
 export default (props: Props) => {
-	const [currentView, setCurrentView] = useRecoil(atoms.currentView)
-	const [teams, setTeams] = useRecoil(atoms.teams)
-	const [currentTeamID, setCurrentTeamID] = useRecoil(atoms.currentTeamID)
-	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
-	const [allPokemon, setAllPokemon] = useRecoil(atoms.allPokemon)
-	const [allMoves, setAllMoves] = useRecoil(atoms.allMoves)
-	const [allItems, setAllItems] = useRecoil(atoms.allItems)
-	const [allAbilities, setAllAbilities] = useRecoil(atoms.allAbilities)
+	const [currentView] = useRecoil(atoms.currentView)
 
 	return (
 		<>

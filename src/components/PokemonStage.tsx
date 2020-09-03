@@ -1,10 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from 'react'
-import Teambuilder from '../../../interfaces/Teambuilder'
-import { ViewPrimary, ViewSecondary } from '../views'
+import React from 'react'
+import Teambuilder from 'interfaces/Teambuilder'
+import { ViewPrimary, ViewSecondary } from 'pages/Teambuilder/views'
 import { useRecoilState as useRecoil } from 'recoil'
 import styled from 'styled-components'
-import atoms from '../../../atoms'
+import atoms from 'atoms'
 
 const PokemonStage = styled.div`
 	display: flex;
@@ -61,15 +60,12 @@ interface Props {
 
 export default (props: Props) => {
 	const { pokemon } = props
-	const [currentView, setCurrentView] = useRecoil(atoms.currentView)
-	const [teams, setTeams] = useRecoil(atoms.teams)
-	const [currentTeamID, setCurrentTeamID] = useRecoil(atoms.currentTeamID)
-	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
-	const [allPokemon, setAllPokemon] = useRecoil(atoms.allPokemon)
-	const [allMoves, setAllMoves] = useRecoil(atoms.allMoves)
-	const [currentViewSecondary, setCurrentViewSecondary] = useRecoil(atoms.currentViewSecondary)
+	const [, setCurrentView] = useRecoil(atoms.currentView)
+	const [allPokemon] = useRecoil(atoms.allPokemon)
+	const [allMoves] = useRecoil(atoms.allMoves)
+	const [, setCurrentViewSecondary] = useRecoil(atoms.currentViewSecondary)
 	const [input, setInput] = useRecoil(atoms.editPokemonInput)
-	const [currentMoveIndex, setCurrentMoveIndex] = useRecoil(atoms.currentMoveIndex)
+	const [, setCurrentMoveIndex] = useRecoil(atoms.currentMoveIndex)
 
 	const abstractPokemon = allPokemon.get(pokemon.name) as Teambuilder.Pokemon.Abstract
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Teambuilder from '../../../interfaces/Teambuilder'
+import Teambuilder from 'interfaces/Teambuilder'
 
 const MoveItem = styled.div`
 	display: flex;

@@ -1,26 +1,17 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react'
 import { useRecoilState as useRecoil } from 'recoil'
+import { PokemonItem, CurrentTeamNav } from 'components'
+import { Searchbar, Button } from 'ui'
+import atoms from 'atoms'
 import { ViewPrimary } from '../views'
-import atoms from '../../../atoms'
-import CurrentTeamNav from '../components/CurrentTeamNav'
-import { Searchbar, Button } from '../../../ui'
-import PokemonItem from '../components/PokemonItem'
-import Teambuilder from '../../../interfaces/Teambuilder'
 
 interface Props {}
 
 export default (props: Props) => {
-	const [currentView, setCurrentView] = useRecoil(atoms.currentView)
-	const [teams, setTeams] = useRecoil(atoms.teams)
-	const [currentTeamID, setCurrentTeamID] = useRecoil(atoms.currentTeamID)
-	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
-	const [allPokemon, setAllPokemon] = useRecoil(atoms.allPokemon)
-	const [allMoves, setAllMoves] = useRecoil(atoms.allMoves)
+	const [, setCurrentView] = useRecoil(atoms.currentView)
+	const [allPokemon] = useRecoil(atoms.allPokemon)
 
 	const [input, setInput] = useState<string>('')
-
-	const currentTeam = teams.find(team => team.id === currentTeamID) as Teambuilder.Team
 
 	return (
 		<>

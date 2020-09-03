@@ -1,23 +1,21 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import { useRecoilState as useRecoil } from 'recoil'
-import atoms from '../../../../atoms'
-import MoveItem from '../../components/MoveItem'
-import Teambuilder from '../../../../interfaces/Teambuilder'
+import { MoveItem } from '../../../../components'
 import { ViewSecondary } from '../../views'
+import Teambuilder from '../../../../interfaces/Teambuilder'
+import atoms from '../../../../atoms'
 
 interface Props {}
 
 export default (props: Props) => {
-	const [currentView, setCurrentView] = useRecoil(atoms.currentView)
 	const [teams, setTeams] = useRecoil(atoms.teams)
-	const [currentTeamID, setCurrentTeamID] = useRecoil(atoms.currentTeamID)
-	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
-	const [allPokemon, setAllPokemon] = useRecoil(atoms.allPokemon)
-	const [allMoves, setAllMoves] = useRecoil(atoms.allMoves)
-	const [input, setInput] = useRecoil(atoms.editPokemonInput)
-	const [currentMoveIndex, setCurrentMoveIndex] = useRecoil(atoms.currentMoveIndex)
-	const [currentViewSecondary, setCurrentViewSecondary] = useRecoil(atoms.currentViewSecondary)
+	const [currentTeamID] = useRecoil(atoms.currentTeamID)
+	const [currentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
+	const [allPokemon] = useRecoil(atoms.allPokemon)
+	const [allMoves] = useRecoil(atoms.allMoves)
+	const [input] = useRecoil(atoms.editPokemonInput)
+	const [currentMoveIndex] = useRecoil(atoms.currentMoveIndex)
+	const [, setCurrentViewSecondary] = useRecoil(atoms.currentViewSecondary)
 
 	const currentTeam = teams.find(team => team.id === currentTeamID) as Teambuilder.Team
 

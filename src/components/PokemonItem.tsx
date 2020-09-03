@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
-import atoms from '../../../atoms'
+import atoms from 'atoms'
 import styled from 'styled-components'
 import { useRecoilState as useRecoil } from 'recoil'
-import Teambuilder from '../../../interfaces/Teambuilder'
-import { ViewPrimary } from '../views'
-import { abstractToDefaultConcrete } from '../util'
+import Teambuilder from 'interfaces/Teambuilder'
+import { ViewPrimary } from 'pages/Teambuilder/views'
+import { abstractToDefaultConcrete } from 'pages/Teambuilder/util'
 
 const PokemonItem = styled.div`
 	display: flex;
@@ -29,12 +28,10 @@ interface Props {
 }
 
 export default (props: Props) => {
-	const [currentView, setCurrentView] = useRecoil(atoms.currentView)
+	const [, setCurrentView] = useRecoil(atoms.currentView)
 	const [teams, setTeams] = useRecoil(atoms.teams)
-	const [currentTeamID, setCurrentTeamID] = useRecoil(atoms.currentTeamID)
-	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
-	const [allPokemon, setAllPokemon] = useRecoil(atoms.allPokemon)
-	const [allMoves, setAllMoves] = useRecoil(atoms.allMoves)
+	const [currentTeamID] = useRecoil(atoms.currentTeamID)
+	const [, setCurrentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
 
 	const currentTeam = teams.find(team => team.id === currentTeamID) as Teambuilder.Team
 

@@ -1,8 +1,6 @@
 import React from 'react'
-import { useRecoilState as useRecoil } from 'recoil'
-import atoms from '../atoms'
+import { StyledLink } from 'ui'
 import styled from 'styled-components'
-import { StyledLink } from '../ui'
 
 export const Navbar = styled.nav`
 	display: flex;
@@ -28,13 +26,6 @@ export const Navbar = styled.nav`
 interface Props {}
 
 export default (props: Props) => {
-	const [currentView, setCurrentView] = useRecoil(atoms.currentView)
-	const [teams, setTeams] = useRecoil(atoms.teams)
-	const [currentTeamID, setCurrentTeamID] = useRecoil(atoms.currentTeamID)
-	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
-	const [allPokemon, setAllPokemon] = useRecoil(atoms.allPokemon)
-	const [allMoves, setAllMoves] = useRecoil(atoms.allMoves)
-
 	return (
 		<Navbar>
 			<StyledLink to='/'>

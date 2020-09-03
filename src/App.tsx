@@ -1,13 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
-import io from 'socket.io-client'
 import { createGlobalStyle } from 'styled-components'
 import { RecoilRoot } from 'recoil'
 import { BrowserRouter, Route } from 'react-router-dom'
-import Home from './pages/Home/Home'
-import Teambuilder from './pages/Teambuilder/Teambuilder'
-import Battle from './pages/Battle/Battle'
 import StorageCacher from './logic/StorageCacher'
+import * as Pages from './pages'
+//import io from 'socket.io-client'
 
 //const socket = io.connect('http://localhost:4000')
 //socket.emit('msg', 'hello world!')
@@ -40,9 +37,9 @@ const App = () => {
 			<RecoilRoot>
 				<GlobalStyles />
 				<StorageCacher />
-				<Route exact path='/' component={Home} />
-				<Route exact path='/teambuilder' component={Teambuilder} />
-				<Route exact path='/battle' component={Battle} />
+				<Route exact path='/' component={Pages.Home} />
+				<Route exact path='/teambuilder' component={Pages.Teambuilder} />
+				<Route exact path='/battle' component={Pages.Battle} />
 			</RecoilRoot>
 		</BrowserRouter>
 	)

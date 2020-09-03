@@ -1,4 +1,4 @@
-import Teambuilder from '../../interfaces/Teambuilder'
+import Teambuilder from 'interfaces/Teambuilder'
 
 export const abstractToDefaultConcrete = (
 	pokemon: Teambuilder.Pokemon.Abstract,

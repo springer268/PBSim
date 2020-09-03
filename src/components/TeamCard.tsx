@@ -1,11 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
-import Teambuilder from '../interfaces/Teambuilder'
+import Teambuilder from 'interfaces/Teambuilder'
 import styled from 'styled-components'
-import { ViewPrimary } from '../pages/Teambuilder/views'
+import { ViewPrimary } from 'pages/Teambuilder/views'
 import { useRecoilState as useRecoil } from 'recoil'
-import atoms from '../atoms'
-import { StyledLink } from '../ui'
+import atoms from 'atoms'
+import { StyledLink } from 'ui'
 
 const TeamCard = styled.div`
 	border: solid 1px #ddd;
@@ -65,12 +64,11 @@ interface Props {
 }
 
 export default (props: Props) => {
-	const [currentView, setCurrentView] = useRecoil(atoms.currentView)
-	const [teams, setTeams] = useRecoil(atoms.teams)
-	const [currentTeamID, setCurrentTeamID] = useRecoil(atoms.currentTeamID)
-	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
-	const [allPokemon, setAllPokemon] = useRecoil(atoms.allPokemon)
-	const [allMoves, setAllMoves] = useRecoil(atoms.allMoves)
+	const [, setCurrentView] = useRecoil(atoms.currentView)
+	const [, setTeams] = useRecoil(atoms.teams)
+	const [, setCurrentTeamID] = useRecoil(atoms.currentTeamID)
+	const [, setCurrentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
+	const [allPokemon] = useRecoil(atoms.allPokemon)
 
 	const { team } = props
 

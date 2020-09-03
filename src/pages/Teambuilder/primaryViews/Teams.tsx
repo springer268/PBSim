@@ -1,19 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import { useRecoilState as useRecoil } from 'recoil'
-import { Button, Wrapper, Heading, StyledLink } from '../../../ui'
-import atoms from '../../../atoms'
-import TeamCard from '../../../components/TeamCard'
+import { Button, Wrapper, Heading, StyledLink } from 'ui'
+import { TeamCard } from 'components'
+import atoms from 'atoms'
 
 interface Props {}
 
 export default (props: Props) => {
-	const [currentView, setCurrentView] = useRecoil(atoms.currentView)
 	const [teams, setTeams] = useRecoil(atoms.teams)
-	const [currentTeamID, setCurrentTeamID] = useRecoil(atoms.currentTeamID)
-	const [currentPokemonIndex, setCurrentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
-	const [allPokemon, setAllPokemon] = useRecoil(atoms.allPokemon)
-	const [allMoves, setAllMoves] = useRecoil(atoms.allMoves)
+	const [allPokemon] = useRecoil(atoms.allPokemon)
 
 	return (
 		<>
