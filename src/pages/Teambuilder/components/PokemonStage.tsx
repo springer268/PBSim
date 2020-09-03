@@ -4,7 +4,7 @@ import Teambuilder from '../../../interfaces/Teambuilder'
 import { ViewPrimary, ViewSecondary } from '../views'
 import { useRecoilState as useRecoil } from 'recoil'
 import styled from 'styled-components'
-import atoms from '../atoms'
+import atoms from '../../../atoms'
 
 const PokemonStage = styled.div`
 	display: flex;
@@ -101,7 +101,7 @@ export default (props: Props) => {
 									setCurrentView(ViewPrimary.EditPokemon)
 									setCurrentViewSecondary(ViewSecondary.Moves)
 								}}
-								onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+								onChange={e => {
 									setInput(e.target.value)
 								}}
 							/>

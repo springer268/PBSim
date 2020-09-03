@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Navbar from '../../components/Navbar'
 import { Wrapper, Heading, Select, Button, StyledLink } from '../../ui'
 import { useRecoilState as useRecoil } from 'recoil'
-import atoms from '../Teambuilder/atoms'
+import atoms from '../../atoms'
 import TeamCard from '../../components/TeamCard'
 import Teambuilder from '../../interfaces/Teambuilder'
 import SideNav from '../../components/SideNav'
@@ -26,6 +26,7 @@ export default (props: Props) => {
 						<StyledLink to='/'>
 							<Button>Back</Button>
 						</StyledLink>
+						<p>(Battle isn't functional yet! Project shown is front end only so far)</p>
 						{teams.length > 0 ? (
 							<>
 								<Heading>Pick a team</Heading>

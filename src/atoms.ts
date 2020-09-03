@@ -1,16 +1,16 @@
 import { atom } from 'recoil'
-import Teambuilder from '../../interfaces/Teambuilder'
-import { ViewPrimary, ViewSecondary } from './views'
+import Teambuilder from './interfaces/Teambuilder'
+import { ViewPrimary, ViewSecondary } from './pages/Teambuilder/views'
 
 export default {
 	currentView: atom({
 		key: 'teambuilder-currentView',
-		default: ViewPrimary.EditPokemon
+		default: ViewPrimary.Teams
 	}),
 
 	currentViewSecondary: atom({
 		key: 'teambuilder-currentViewSecondary',
-		default: ViewSecondary.Moves
+		default: ViewSecondary.Nothing
 	}),
 
 	teams: atom({

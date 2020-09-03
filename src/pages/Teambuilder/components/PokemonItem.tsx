@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
-import atoms from '../atoms'
+import atoms from '../../../atoms'
 import styled from 'styled-components'
 import { useRecoilState as useRecoil } from 'recoil'
 import Teambuilder from '../../../interfaces/Teambuilder'

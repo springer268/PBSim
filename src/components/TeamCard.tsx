@@ -4,7 +4,7 @@ import Teambuilder from '../interfaces/Teambuilder'
 import styled from 'styled-components'
 import { ViewPrimary } from '../pages/Teambuilder/views'
 import { useRecoilState as useRecoil } from 'recoil'
-import atoms from '../pages/Teambuilder/atoms'
+import atoms from '../atoms'
 import { StyledLink } from '../ui'
 
 const TeamCard = styled.div`

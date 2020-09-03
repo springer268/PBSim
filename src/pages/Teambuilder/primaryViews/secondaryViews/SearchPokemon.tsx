@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react'
 import { useRecoilState as useRecoil } from 'recoil'
-import atoms from '../../atoms'
-import { Searchbar } from '../../../../ui'
+import atoms from '../../../../atoms'
 import PokemonItem from '../../components/PokemonItem'
 import Teambuilder from '../../../../interfaces/Teambuilder'
 

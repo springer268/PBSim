@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import { useRecoilState as useRecoil } from 'recoil'
-import atoms from '../../atoms'
+import atoms from '../../../../atoms'
 import MoveItem from '../../components/MoveItem'
 import Teambuilder from '../../../../interfaces/Teambuilder'
 import { ViewSecondary } from '../../views'

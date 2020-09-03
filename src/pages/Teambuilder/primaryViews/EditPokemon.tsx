@@ -2,7 +2,7 @@
 import React from 'react'
 import { useRecoilState as useRecoil } from 'recoil'
 import { ViewPrimary, ViewSecondary } from '../views'
-import atoms from '../atoms'
+import atoms from '../../../atoms'
 import Teambuilder from '../../../interfaces/Teambuilder'
 import CurrentTeamNav from '../components/CurrentTeamNav'
 import PokemonStage from '../components/PokemonStage'

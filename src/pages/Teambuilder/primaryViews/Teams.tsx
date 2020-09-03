@@ -2,7 +2,7 @@
 import React from 'react'
 import { useRecoilState as useRecoil } from 'recoil'
 import { Button, Wrapper, Heading, StyledLink } from '../../../ui'
-import atoms from '../atoms'
+import atoms from '../../../atoms'
 import TeamCard from '../../../components/TeamCard'
 
 interface Props {}
