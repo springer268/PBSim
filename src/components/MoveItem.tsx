@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 import Teambuilder from 'interfaces/Teambuilder'
 
-const MoveItem = styled.div`
+const MoveItemUI = styled.div`
 	display: flex;
 	padding: 10px;
 	border: solid 1px #ddd;
@@ -23,12 +23,12 @@ interface Props {
 	move: Teambuilder.Move.Abstract
 }
 
-export default (props: Props) => {
-	const { move } = props
-
+const MoveItem: FC<Props> = ({ children, move }): JSX.Element => {
 	return (
-		<MoveItem key={move.uglyName}>
+		<MoveItemUI key={move.uglyName}>
 			<p>{move.prettyName}</p>
-		</MoveItem>
+		</MoveItemUI>
 	)
 }
+
+export default MoveItem

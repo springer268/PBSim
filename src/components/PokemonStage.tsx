@@ -1,11 +1,10 @@
-import React from 'react'
+import React, { FC } from 'react'
+import { useAll } from 'hooks'
+import styled from 'styled-components'
 import Teambuilder from 'interfaces/Teambuilder'
 import { ViewPrimary, ViewSecondary } from 'pages/Teambuilder/views'
-import { useRecoilState as useRecoil } from 'recoil'
-import styled from 'styled-components'
-import atoms from 'atoms'
 
-const PokemonStage = styled.div`
+const PokemonStageUI = styled.div`
 	display: flex;
 	min-height: 155px;
 	padding-top: 15px;
@@ -58,19 +57,21 @@ interface Props {
 	pokemon: Teambuilder.Pokemon.Concrete
 }
 
-export default (props: Props) => {
-	const { pokemon } = props
-	const [, setCurrentView] = useRecoil(atoms.currentView)
-	const [allPokemon] = useRecoil(atoms.allPokemon)
-	const [allMoves] = useRecoil(atoms.allMoves)
-	const [, setCurrentViewSecondary] = useRecoil(atoms.currentViewSecondary)
-	const [input, setInput] = useRecoil(atoms.editPokemonInput)
-	const [, setCurrentMoveIndex] = useRecoil(atoms.currentMoveIndex)
+const PokemonStage: FC<Props> = ({ children, pokemon }): JSX.Element => {
+	const {
+		setCurrentView,
+		allPokemon,
+		allMoves,
+		setCurrentViewSecondary,
+		editPokemonInput: input,
+		setEditPokemonInput: setInput,
+		setCurrentMoveIndex
+	} = useAll()
 
 	const abstractPokemon = allPokemon.get(pokemon.name) as Teambuilder.Pokemon.Abstract
 
 	return (
-		<PokemonStage>
+		<PokemonStageUI>
 			<div className='pokemon-img'>
 				<img src={abstractPokemon.sprite} alt={pokemon.name} />
 				<div className='form-control'>
@@ -119,6 +120,8 @@ export default (props: Props) => {
 					})}
 				</div>
 			</div>
-		</PokemonStage>
+		</PokemonStageUI>
 	)
 }
+
+export default PokemonStage

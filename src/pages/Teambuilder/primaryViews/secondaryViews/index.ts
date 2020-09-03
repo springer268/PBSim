@@ -1,2 +1,2 @@
-export { default as SearchPokemon } from './SearchPokemon'
+export { default as SelectPokemon } from './SelectPokemon'
 export { default as SelectMove } from './SelectMove'

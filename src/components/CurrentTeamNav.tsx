@@ -1,11 +1,10 @@
-import React from 'react'
-import { useRecoilState as useRecoil } from 'recoil'
-import { ViewPrimary } from 'pages/Teambuilder/views'
-import Teambuilder from 'interfaces/Teambuilder'
-import atoms from 'atoms'
+import React, { FC } from 'react'
 import styled from 'styled-components'
+import { useAll } from 'hooks'
+import Teambuilder from 'interfaces/Teambuilder'
+import { ViewPrimary } from 'pages/Teambuilder/views'
 
-const CurrentTeamNav = styled.nav`
+const CurrentTeamNavUI = styled.nav`
 	display: flex;
 	border-bottom: solid 1px #ddd;
 	height: 90px;
@@ -48,22 +47,16 @@ const CurrentTeamNav = styled.nav`
 	}
 `
 
-interface Props {
-	children?: React.ReactNode
-}
+interface Props {}
 
-export default (props: Props) => {
-	const [, setCurrentView] = useRecoil(atoms.currentView)
-	const [teams] = useRecoil(atoms.teams)
-	const [currentTeamID] = useRecoil(atoms.currentTeamID)
-	const [, setCurrentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
-	const [allPokemon] = useRecoil(atoms.allPokemon)
+const CurrentTeamNav: FC<Props> = ({ children }): JSX.Element => {
+	const { teams, currentTeamID, allPokemon, setCurrentView, setCurrentPokemonIndex } = useAll()
 
 	const currentTeam = teams.find(team => team.id === currentTeamID) as Teambuilder.Team
 
 	return (
-		<CurrentTeamNav>
-			{props.children}
+		<CurrentTeamNavUI>
+			{children}
 			<ul>
 				{currentTeam.pokemon.map(pokemon => {
 					const abstractPokemon = allPokemon.get(pokemon.name) as Teambuilder.Pokemon.Abstract
@@ -93,6 +86,8 @@ export default (props: Props) => {
 					<></>
 				)}
 			</ul>
-		</CurrentTeamNav>
+		</CurrentTeamNavUI>
 	)
 }
+
+export default CurrentTeamNav

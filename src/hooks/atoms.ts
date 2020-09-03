@@ -1,8 +1,24 @@
-import { atom } from 'recoil'
-import Teambuilder from './interfaces/Teambuilder'
-import { ViewPrimary, ViewSecondary } from './pages/Teambuilder/views'
+import { atom, RecoilState } from 'recoil'
+import Teambuilder from '../interfaces/Teambuilder'
+import { ViewPrimary, ViewSecondary } from '../pages/Teambuilder/views'
 
-export default {
+export interface Atoms {
+	currentView: RecoilState<number>
+	currentViewSecondary: RecoilState<number>
+	teams: RecoilState<Teambuilder.Team[]>
+	currentTeamID: RecoilState<number>
+	currentPokemonIndex: RecoilState<number>
+
+	allPokemon: RecoilState<Map<string, Teambuilder.Pokemon.Abstract>>
+	allMoves: RecoilState<Map<string, Teambuilder.Move.Abstract>>
+	allItems: RecoilState<Map<string, Teambuilder.Item.Abstract>>
+	allAbilities: RecoilState<Map<string, Teambuilder.Ability.Abstract>>
+
+	editPokemonInput: RecoilState<string>
+	currentMoveIndex: RecoilState<number>
+}
+
+const atoms = {
 	currentView: atom({
 		key: 'teambuilder-currentView',
 		default: ViewPrimary.Teams
@@ -73,4 +89,6 @@ export default {
 		key: 'teambuilder-currentMoveIndex',
 		default: 0
 	})
-}
+} as Atoms
+
+export default atoms

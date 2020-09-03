@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react'
-import { useRecoilState as useRecoil } from 'recoil'
+import React, { useEffect, FC } from 'react'
 import {
 	getRangeOfTeambuilderPokemon,
 	getRangeOfTeambuilderMoves,
@@ -8,15 +7,21 @@ import {
 	getRangeOfTeambuilderAbilities
 } from 'api'
 import Teambuilder from 'interfaces/Teambuilder'
-import atoms from 'atoms'
+import { useAll } from 'hooks'
 
 interface Props {}
 
-export default (props: Props) => {
-	const [allPokemon, setAllPokemon] = useRecoil(atoms.allPokemon)
-	const [allMoves, setAllMoves] = useRecoil(atoms.allMoves)
-	const [allItems, setAllItems] = useRecoil(atoms.allItems)
-	const [allAbilities, setAllAbilities] = useRecoil(atoms.allAbilities)
+const StorageCacher: FC<Props> = ({ children }): JSX.Element => {
+	const {
+		allPokemon,
+		setAllPokemon,
+		allMoves,
+		setAllMoves,
+		allItems,
+		setAllItems,
+		allAbilities,
+		setAllAbilities
+	} = useAll()
 
 	useEffect(() => {
 		if (allPokemon.size === 0) {
@@ -118,3 +123,5 @@ export default (props: Props) => {
 
 	return <></>
 }
+
+export default StorageCacher

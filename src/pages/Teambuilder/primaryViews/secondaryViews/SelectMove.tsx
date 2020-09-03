@@ -1,21 +1,23 @@
-import React from 'react'
-import { useRecoilState as useRecoil } from 'recoil'
-import { MoveItem } from '../../../../components'
+import React, { FC } from 'react'
+import { useAll } from 'hooks'
+import { MoveItem } from 'components'
+import Teambuilder from 'interfaces/Teambuilder'
 import { ViewSecondary } from '../../views'
-import Teambuilder from '../../../../interfaces/Teambuilder'
-import atoms from '../../../../atoms'
 
 interface Props {}
 
-export default (props: Props) => {
-	const [teams, setTeams] = useRecoil(atoms.teams)
-	const [currentTeamID] = useRecoil(atoms.currentTeamID)
-	const [currentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
-	const [allPokemon] = useRecoil(atoms.allPokemon)
-	const [allMoves] = useRecoil(atoms.allMoves)
-	const [input] = useRecoil(atoms.editPokemonInput)
-	const [currentMoveIndex] = useRecoil(atoms.currentMoveIndex)
-	const [, setCurrentViewSecondary] = useRecoil(atoms.currentViewSecondary)
+const SelectMove: FC<Props> = ({ children }): JSX.Element => {
+	const {
+		teams,
+		setTeams,
+		currentTeamID,
+		currentPokemonIndex,
+		allPokemon,
+		allMoves,
+		editPokemonInput: input,
+		currentMoveIndex,
+		setCurrentViewSecondary
+	} = useAll()
 
 	const currentTeam = teams.find(team => team.id === currentTeamID) as Teambuilder.Team
 
@@ -90,3 +92,5 @@ export default (props: Props) => {
 		</>
 	)
 }
+
+export default SelectMove

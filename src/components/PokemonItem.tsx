@@ -1,12 +1,11 @@
-import React from 'react'
-import atoms from 'atoms'
+import React, { FC } from 'react'
+import { useAll } from 'hooks'
 import styled from 'styled-components'
-import { useRecoilState as useRecoil } from 'recoil'
 import Teambuilder from 'interfaces/Teambuilder'
 import { ViewPrimary } from 'pages/Teambuilder/views'
 import { abstractToDefaultConcrete } from 'pages/Teambuilder/util'
 
-const PokemonItem = styled.div`
+const PokemonItemUI = styled.div`
 	display: flex;
 	padding: 10px;
 	border: solid 1px #ddd;
@@ -27,15 +26,10 @@ interface Props {
 	pokemon: Teambuilder.Pokemon.Abstract
 }
 
-export default (props: Props) => {
-	const [, setCurrentView] = useRecoil(atoms.currentView)
-	const [teams, setTeams] = useRecoil(atoms.teams)
-	const [currentTeamID] = useRecoil(atoms.currentTeamID)
-	const [, setCurrentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
+const PokemonItem: FC<Props> = ({ children, pokemon }): JSX.Element => {
+	const { setCurrentView, teams, setTeams, currentTeamID, setCurrentPokemonIndex } = useAll()
 
 	const currentTeam = teams.find(team => team.id === currentTeamID) as Teambuilder.Team
-
-	const { pokemon } = props
 
 	const setCurrentTeam = (newTeam: Teambuilder.Team) => {
 		setTeams(teams => {
@@ -54,7 +48,7 @@ export default (props: Props) => {
 	}
 
 	return (
-		<PokemonItem
+		<PokemonItemUI
 			key={pokemon.id}
 			onClick={() => {
 				setCurrentTeam({
@@ -67,6 +61,8 @@ export default (props: Props) => {
 		>
 			<img src={pokemon.sprite} alt={pokemon.name} />
 			<p>{pokemon.name}</p>
-		</PokemonItem>
+		</PokemonItemUI>
 	)
 }
+
+export default PokemonItem

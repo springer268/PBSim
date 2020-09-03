@@ -1,14 +1,13 @@
-import React, { useState } from 'react'
-import { useRecoilState as useRecoil } from 'recoil'
+import React, { useState, FC } from 'react'
 import { Navbar, TeamCard, SideNav } from 'components'
 import { Wrapper, Heading, Select, Button, StyledLink, Grid } from 'ui'
 import Teambuilder from 'interfaces/Teambuilder'
-import atoms from 'atoms'
+import { useAll } from 'hooks'
 
 interface Props {}
 
-export default (props: Props) => {
-	const [teams] = useRecoil(atoms.teams)
+const Battle: FC<Props> = ({ children }): JSX.Element => {
+	const { teams } = useAll()
 	const [selectedTeamID, setSelectedTeamID] = useState<number>(
 		teams.map(team => team.id).reduce((max, cur) => (cur > max ? cur : max), 0)
 	)
@@ -61,3 +60,5 @@ export default (props: Props) => {
 		</>
 	)
 }
+
+export default Battle

@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styled from 'styled-components'
 
-const NavbarUI = styled.nav`
+const SideNavUI = styled.nav`
 	background: var(--bg-secondary);
 	height: 93vh;
 	min-height: 100%;
@@ -20,6 +20,8 @@ const NavbarUI = styled.nav`
 
 interface Props {}
 
-export default (props: Props) => {
-	return <NavbarUI></NavbarUI>
+const SideNav: FC<Props> = ({ children }): JSX.Element => {
+	return <SideNavUI></SideNavUI>
 }
+
+export default SideNav

@@ -10,7 +10,7 @@ interface RouteParams {}
 
 interface Props extends RouteComponentProps<RouteParams> {}
 
-export default (props: Props) => {
+const Home = (props: Props): JSX.Element => {
 	return (
 		<Styling>
 			<Navbar />
@@ -54,3 +54,5 @@ export default (props: Props) => {
 		</Styling>
 	)
 }
+
+export default Home

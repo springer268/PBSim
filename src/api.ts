@@ -112,7 +112,7 @@ export const getRangeOfTeambuilderItems = async (
 	return await Promise.all(promises)
 }
 
-// Abilities
+// ABILITIES
 
 export const convertPokeAPIAbilityToTeambuilder = (data: PokeAPI.Ability): Teambuilder.Ability.Abstract => {
 	return {

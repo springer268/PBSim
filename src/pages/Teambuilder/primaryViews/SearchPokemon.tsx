@@ -1,15 +1,13 @@
-import React, { useState } from 'react'
-import { useRecoilState as useRecoil } from 'recoil'
+import React, { useState, FC } from 'react'
+import { useAll } from 'hooks'
 import { PokemonItem, CurrentTeamNav } from 'components'
 import { Searchbar, Button } from 'ui'
-import atoms from 'atoms'
 import { ViewPrimary } from '../views'
 
 interface Props {}
 
-export default (props: Props) => {
-	const [, setCurrentView] = useRecoil(atoms.currentView)
-	const [allPokemon] = useRecoil(atoms.allPokemon)
+const SearchPokemon: FC<Props> = ({ children }): JSX.Element => {
+	const { setCurrentView, allPokemon } = useAll()
 
 	const [input, setInput] = useState<string>('')
 
@@ -37,3 +35,5 @@ export default (props: Props) => {
 		</>
 	)
 }
+
+export default SearchPokemon

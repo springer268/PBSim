@@ -1,14 +1,12 @@
-import React from 'react'
-import { useRecoilState as useRecoil } from 'recoil'
+import React, { FC } from 'react'
+import { useAll } from 'hooks'
 import { Button, Wrapper, Heading, StyledLink } from 'ui'
 import { TeamCard } from 'components'
-import atoms from 'atoms'
 
 interface Props {}
 
-export default (props: Props) => {
-	const [teams, setTeams] = useRecoil(atoms.teams)
-	const [allPokemon] = useRecoil(atoms.allPokemon)
+const Teams: FC<Props> = ({ children }): JSX.Element => {
+	const { teams, setTeams, allPokemon } = useAll()
 
 	return (
 		<>
@@ -49,3 +47,5 @@ export default (props: Props) => {
 		</>
 	)
 }
+
+export default Teams

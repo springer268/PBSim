@@ -1,18 +1,14 @@
-import React from 'react'
-import { useRecoilState as useRecoil } from 'recoil'
+import React, { FC } from 'react'
+import { useAll } from 'hooks'
 import { PokemonStage } from 'components'
 import { Wrapper, Button, Heading } from 'ui'
 import Teambuilder from 'interfaces/Teambuilder'
-import atoms from 'atoms'
 import { ViewPrimary } from '../views'
 
 interface Props {}
 
-export default (props: Props) => {
-	const [, setCurrentView] = useRecoil(atoms.currentView)
-	const [teams] = useRecoil(atoms.teams)
-	const [currentTeamID] = useRecoil(atoms.currentTeamID)
-	const [, setCurrentPokemonIndex] = useRecoil(atoms.currentPokemonIndex)
+const Team: FC<Props> = ({ children }): JSX.Element => {
+	const { setCurrentView, teams, currentTeamID, setCurrentPokemonIndex } = useAll()
 
 	const currentTeam = teams.find(team => team.id === currentTeamID) as Teambuilder.Team
 
@@ -47,3 +43,5 @@ export default (props: Props) => {
 		</>
 	)
 }
+
+export default Team

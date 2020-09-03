@@ -1,19 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React from 'react'
+import React, { FC } from 'react'
 import { RouteComponentProps } from 'react-router-dom'
-import { useRecoilState as useRecoil } from 'recoil'
+import { useSelector } from 'hooks'
 import { SideNav, Navbar } from 'components'
 import { Grid } from 'ui'
 import { Team, Teams, SearchPokemon, EditPokemon } from './primaryViews'
 import { ViewPrimary } from './views'
-import atoms from 'atoms'
 
 interface RouteParams {}
 
 interface Props extends RouteComponentProps<RouteParams> {}
 
-export default (props: Props) => {
-	const [currentView] = useRecoil(atoms.currentView)
+const Teambuilder: FC<Props> = ({ children }): JSX.Element => {
+	const [currentView] = useSelector(a => a.currentView)
 
 	return (
 		<>
@@ -40,3 +39,5 @@ export default (props: Props) => {
 		</>
 	)
 }
+
+export default Teambuilder

@@ -1,13 +1,11 @@
-import React from 'react'
-import { useRecoilState as useRecoil } from 'recoil'
-import { PokemonItem } from '../../../../components'
-import atoms from '../../../../atoms'
+import React, { FC } from 'react'
+import { useAll } from 'hooks'
+import { PokemonItem } from 'components'
 
 interface Props {}
 
-export default (props: Props) => {
-	const [allPokemon] = useRecoil(atoms.allPokemon)
-	const [input] = useRecoil(atoms.editPokemonInput)
+const SelectPokemon: FC<Props> = ({ children }): JSX.Element => {
+	const { allPokemon, editPokemonInput: input } = useAll()
 
 	return (
 		<>
@@ -23,3 +21,5 @@ export default (props: Props) => {
 		</>
 	)
 }
+
+export default SelectPokemon

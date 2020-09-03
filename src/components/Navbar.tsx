@@ -1,8 +1,8 @@
-import React from 'react'
-import { StyledLink } from 'ui'
+import React, { FC } from 'react'
 import styled from 'styled-components'
+import { StyledLink } from 'ui'
 
-export const Navbar = styled.nav`
+export const NavbarUI = styled.nav`
 	display: flex;
 	width: 100%;
 	height: 50px;
@@ -25,12 +25,14 @@ export const Navbar = styled.nav`
 
 interface Props {}
 
-export default (props: Props) => {
+const Navbar: FC<Props> = ({ children }): JSX.Element => {
 	return (
-		<Navbar>
+		<NavbarUI>
 			<StyledLink to='/'>
 				<h1>Pokemon Battle Simulator</h1>
 			</StyledLink>
-		</Navbar>
+		</NavbarUI>
 	)
 }
+
+export default Navbar
