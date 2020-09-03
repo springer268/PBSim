@@ -1,5 +1,5 @@
 {
-	"name": "front-end",
+	"name": "pokemon-battle-simulator",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
@@ -31,7 +31,10 @@
 		"eject": "react-scripts eject"
 	},
 	"eslintConfig": {
-		"extends": "react-app"
+		"extends": "react-app",
+		"rules": {
+			"no-unused-vars": "off"
+		}
 	},
 	"browserslist": {
 		"production": [
@@ -44,5 +47,6 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
-	}
+	},
+	"devDependencies": {}
 }
