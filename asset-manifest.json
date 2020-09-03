@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/PBSim/static/js/main.08efff54.chunk.js",
+    "main.js.map": "/PBSim/static/js/main.08efff54.chunk.js.map",
+    "runtime-main.js": "/PBSim/static/js/runtime-main.11abe6cb.js",
+    "runtime-main.js.map": "/PBSim/static/js/runtime-main.11abe6cb.js.map",
+    "static/js/2.66744862.chunk.js": "/PBSim/static/js/2.66744862.chunk.js",
+    "static/js/2.66744862.chunk.js.map": "/PBSim/static/js/2.66744862.chunk.js.map",
+    "index.html": "/PBSim/index.html",
+    "precache-manifest.8a9d745e3e286798460b4647faac6bb3.js": "/PBSim/precache-manifest.8a9d745e3e286798460b4647faac6bb3.js",
+    "service-worker.js": "/PBSim/service-worker.js",
+    "static/js/2.66744862.chunk.js.LICENSE.txt": "/PBSim/static/js/2.66744862.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.11abe6cb.js",
+    "static/js/2.66744862.chunk.js",
+    "static/js/main.08efff54.chunk.js"
+  ]
+}
