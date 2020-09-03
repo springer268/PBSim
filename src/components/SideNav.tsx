@@ -12,6 +12,10 @@ const NavbarUI = styled.nav`
 	position: sticky;
 	top: 0;
 	left: 0;
+
+	@media (max-width: 1000px) {
+		display: none;
+	}
 `
 
 interface Props {}

@@ -8,7 +8,7 @@ import atoms from '../../../atoms'
 
 const PokemonStage = styled.div`
 	display: flex;
-	height: 155px;
+	min-height: 155px;
 	padding-top: 15px;
 	border: solid 1px #ddd;
 
@@ -37,7 +37,21 @@ const PokemonStage = styled.div`
 		display: flex;
 		flex-direction: column;
 		width: 100px;
-		height: 100px;
+		min-height: 100px;
+	}
+
+	@media (max-width: 768px) {
+		display: block;
+		padding-bottom: 10px;
+
+		.form-control {
+			padding: 0 10px;
+			margin: 0;
+		}
+
+		.pokemon-img {
+			margin: auto;
+		}
 	}
 `
 

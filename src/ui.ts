@@ -4,11 +4,19 @@ import { Link } from 'react-router-dom'
 export const Grid = styled.div`
 	display: grid;
 	grid-template-columns: 110px auto;
+
+	@media (max-width: 1000px) {
+		grid-template-columns: auto;
+	}
 `
 
 export const Heading = styled.h1`
 	font-size: 38px;
 	margin: 15px 0;
+
+	@media (max-width: 1000px) {
+		text-align: center;
+	}
 `
 
 export const Wrapper = styled.div`

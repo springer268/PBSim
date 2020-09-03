@@ -26,7 +26,6 @@ export default (props: Props) => {
 						<StyledLink to='/'>
 							<Button>Back</Button>
 						</StyledLink>
-						<p>(Battle isn't functional yet! Project shown is front end only so far)</p>
 						{teams.length > 0 ? (
 							<>
 								<Heading>Pick a team</Heading>

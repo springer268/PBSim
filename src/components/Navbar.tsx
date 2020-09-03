@@ -18,12 +18,10 @@ export const Navbar = styled.nav`
 			margin: auto 15px;
 			color: #fff;
 		}
-	}
 
-	button {
-		width: 100px;
-		font-size: 18px;
-		cursor: pointer;
+		@media (max-width: 1000px) {
+			margin: auto;
+		}
 	}
 `
 

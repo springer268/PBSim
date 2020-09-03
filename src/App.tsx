@@ -4,13 +4,13 @@ import io from 'socket.io-client'
 import { createGlobalStyle } from 'styled-components'
 import { RecoilRoot } from 'recoil'
 import { BrowserRouter, Route } from 'react-router-dom'
-import Home from './pages/Teambuilder/Home/Home'
+import Home from './pages/Home/Home'
 import Teambuilder from './pages/Teambuilder/Teambuilder'
 import Battle from './pages/Battle/Battle'
 import StorageCacher from './logic/StorageCacher'
 
-const socket = io.connect('http://localhost:4000')
-socket.emit('msg', 'hello world!')
+//const socket = io.connect('http://localhost:4000')
+//socket.emit('msg', 'hello world!')
 
 const themes = {
 	blue: 'linear-gradient(-135deg, #02e6ee, #1f3cce)',
@@ -22,6 +22,8 @@ const GlobalStyles = createGlobalStyle`
 	:root {
 		--bg-main: ${themes.red};
 		--bg-secondary: linear-gradient(-135deg, #333, #444);
+
+		--mobile: 1000px;
 	}
 
 	* {

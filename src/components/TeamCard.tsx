@@ -12,6 +12,7 @@ const TeamCard = styled.div`
 	display: flex;
 	flex-direction: column;
 	color: black;
+	cursor: initial;
 
 	.top {
 		display: flex;
@@ -50,6 +51,12 @@ const TeamCard = styled.div`
 
 	p.fallback {
 		margin: 0px 0px 15px 15px;
+	}
+
+	@media (max-width: 1000px) {
+		img {
+			width: 50px;
+		}
 	}
 `
 
