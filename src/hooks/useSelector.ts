@@ -1,7 +1,11 @@
 import { useRecoilState, RecoilState } from 'recoil'
-import atoms, { Atoms } from 'hooks/atoms'
+import atoms from 'hooks/atoms'
 
-const useSelector = <T extends unknown>(selector: (state: Atoms) => RecoilState<T>) => {
+/**
+ * Selects the desired state
+ * @param selector The selection function
+ */
+const useSelector = <T>(selector: (state: typeof atoms) => RecoilState<T>) => {
 	return useRecoilState(selector(atoms))
 }
 

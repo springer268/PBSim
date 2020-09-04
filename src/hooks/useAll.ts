@@ -1,5 +1,9 @@
 import useSelector from './useSelector'
 
+/**
+ * Gets all the states and setters.
+ * Really ugly here, but makes it so nice everywhere else.
+ */
 const useAll = () => {
 	const [allAbilities, setAllAbilities] = useSelector(a => a.allAbilities)
 	const [allItems, setAllItems] = useSelector(a => a.allItems)

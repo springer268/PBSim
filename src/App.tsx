@@ -2,8 +2,8 @@ import React from 'react'
 import { createGlobalStyle } from 'styled-components'
 import { RecoilRoot } from 'recoil'
 import { BrowserRouter, Route } from 'react-router-dom'
-import StorageCacher from './logic/StorageCacher'
-import * as Pages from './pages'
+import StorageCacher from 'logic/StorageCacher'
+import * as Pages from 'pages'
 //import io from 'socket.io-client'
 
 //const socket = io.connect('http://localhost:4000')

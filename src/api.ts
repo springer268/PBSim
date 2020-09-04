@@ -1,5 +1,5 @@
-import Teambuilder from './interfaces/Teambuilder'
-import PokeAPI from './interfaces/PokeAPI'
+import Teambuilder from 'interfaces/Teambuilder'
+import PokeAPI from 'interfaces/PokeAPI'
 import axios from 'axios'
 
 // POKEMON
